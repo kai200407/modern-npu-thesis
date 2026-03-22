@@ -19,20 +19,23 @@
 )
 
 #let 字体 = (
-  // 宋体 - 使用系统已有的字体
-  // Noto Serif CJK SC 是思源宋体简体，NSimSun 是新宋体
-  宋体: ("Noto Serif CJK SC", "NSimSun", "CESI_SS_GB18030", "SimSun", "Songti SC"),
+  // 宋体 - 优先使用 Windows 系统字体
+  // SimSun（宋体）、Times New Roman（英文衬线）
+  宋体: ((name: "Times New Roman", covers: "latin-in-cjk"), "SimSun", "NSimSun", "Songti SC", "STSongti", "Noto Serif CJK SC", "Source Han Serif SC", "Source Han Serif"),
 
-  // 黑体 - 使用系统已有的字体
-  // STXihei 是华文细黑，Noto Sans CJK SC 是思源黑体简体
-  黑体: ("Noto Sans CJK SC", "STXihei", "SimHei", "Heiti SC", "STHeiti"),
+  // 黑体 - 优先使用 Windows 系统字体
+  // SimHei（黑体）、Arial（英文无衬线）
+  黑体: ((name: "Arial", covers: "latin-in-cjk"), "SimHei", "Heiti SC", "STHeiti", "Noto Sans CJK SC", "Source Han Sans SC", "Source Han Sans"),
 
-  // 楷体 - STKaiti 是华文楷体
-  楷体: ("STKaiti", "CESI_KT_GB18030", "KaiTi", "Kaiti SC"),
+  // 楷体 - 优先使用 Windows 系统字体
+  // KaiTi（楷体）
+  楷体: ((name: "Times New Roman", covers: "latin-in-cjk"), "KaiTi", "Kaiti SC", "STKaiti", "CESI_KT_GB18030"),
 
-  // 仿宋
-  仿宋: ("FangSong", "STFangSong"),
+  // 仿宋 - 优先使用 Windows 系统字体
+  // FangSong（仿宋）
+  仿宋: ((name: "Times New Roman", covers: "latin-in-cjk"), "FangSong", "STFangSong", "FangSong SC"),
 
-  // 等宽字体 - 用于代码块
-  等宽: ("Noto Sans Mono CJK SC", "Source Han Sans HW SC", "SimHei"),
+  // 等宽字体 - 优先使用 Windows 系统字体
+  // Courier New（英文等宽）、SimHei（中文）
+  等宽: ((name: "Courier New", covers: "latin-in-cjk"), "SimHei", "Noto Sans Mono CJK SC", "Source Han Sans HW SC"),
 )

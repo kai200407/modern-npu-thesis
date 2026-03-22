@@ -109,77 +109,87 @@
   // ========================================
   pagebreak(weak: true, to: if twoside { "odd" })
 
-  // 左上角元信息表格
-  align(left)[
-    #table(
-      columns: (auto, auto),
-      stroke: (x: stroke-width, y: stroke-width),
-      inset: (x: 8pt, y: 4pt),
-      [*学校代码*], [*=* #info.school-code],
-      [*分类号*], [*=* #info.clc],
-    )
-  ]
+  // 设置外封页默认字体
+  set text(font: fonts.宋体, size: 字号.五号)
 
-  h(1fr)
-
+  // 右上角元信息表格（学校代码、分类号、密级、学号）
   align(right)[
+    #set text(font: fonts.黑体, size: 字号.五号, weight: "bold")
     #table(
-      columns: (auto, auto),
+      columns: (2.05cm, 2.4cm),
+      rows: (0.55cm),
       stroke: (x: stroke-width, y: stroke-width),
-      inset: (x: 8pt, y: 4pt),
-      [*密级*], [*=* #info.secret-level],
-      [*学号*], [*=* #anonymous-text("student-id", info.student-id)],
+      inset: (x: 8pt, y: 3pt),
+      align: center,
+      [学校代码], [#info.school-code],
+      [分 类 号], [#info.clc],
+      [密　　级], [#info.secret-level],
+      [学　　号], [#anonymous-text("student-id", info.student-id)],
     )
   ]
 
-  v(40pt)
+  // 题目区域（两行两列表格）
+  v(21 * 10.5pt * 1.1)
 
-  // 题目表格
   align(center)[
+    #set text(font: fonts.黑体, size: 字号.二号, weight: "bold")
     #table(
-      columns: (auto, 1fr),
-      stroke: (x: none, y: stroke-width),
-      inset: (x: 8pt, y: 8pt),
-      [*题目*], [*#info.title.sum()*],
+      columns: (2.34cm, 12.13cm),
+      rows: (1.45cm, 1.45cm),
+      stroke: none,
+      inset: (x: 0pt, y: 4pt),
+      align: (center + horizon, center + horizon),
+      // 第一行：题目 + 题目第一行
+      [题目], table.cell(stroke: (bottom: stroke-width), [#info.title.at(0, default: "")]),
+      // 第二行：空 + 题目第二行
+      [], table.cell(stroke: (bottom: stroke-width), [#info.title.at(1, default: "")]),
     )
   ]
 
-  v(20pt)
+  v(2 * 10.5pt * 1.15)
 
-  // 作者
+  // 作者（一行两列表格，只保留第二列下框线）
   align(center)[
-    #block(width: 200pt)[
-      #table(
-        columns: (auto, 1fr),
-        stroke: (x: none, y: stroke-width),
-        inset: (x: 8pt, y: 8pt),
-        [*作者*], [*#anonymous-text("author", info.author)*],
-      )
-    ]
+    #set text(font: fonts.宋体, size: 字号.三号, weight: "bold")
+    #table(
+      columns: (1.56cm, 3.72cm),
+      rows: (1.28cm),
+      stroke: none,
+      inset: (x: 0pt, y: 4pt),
+      // 第一列：作者
+      table.cell(align: center + bottom, [作者]),
+      // 第二列：作者姓名（只有下框线）
+      table.cell(align: center + bottom, stroke: (bottom: stroke-width), [#anonymous-text("author", info.author)]),
+    )
   ]
 
-  v(60pt)
+  v(3 * 10.5pt * 1.15)
 
-  // 详细信息表格
-  let major-row-label = if degree == "professional" { [*专业领域*] } else { [*学科专业*] }
+  // 详细信息表格（四行两列）
+  let major-row-label = if degree == "professional" { "专 业 领 域" } else { "学 科 专 业" }
 
   align(center)[
-    #block(width: 300pt)[
-      #table(
-        columns: (auto, 1fr),
-        stroke: (x: stroke-width, y: stroke-width),
-        inset: (x: 8pt, y: 6pt),
-        [#major-row-label],
-        [#info.major],
-        [*指导教师*],
-        [#info.supervisor.intersperse(" ").sum()],
-        [*培养单位*],
-        [#info.department],
-        [*申请日期*],
-        [#datetime-display(info.submit-date)],
-      )
-    ]
+    #set text(font: fonts.宋体, size: 字号.三号, weight: "bold")
+    #table(
+      columns: (3.59cm, 9cm),
+      rows: (1cm, 1cm, 1cm, 1cm),
+      stroke: none,
+      inset: (x: 0pt, y: 4pt),
+      // 第一行：学科专业
+      table.cell(align: center + bottom, [#major-row-label]),
+      table.cell(align: center + horizon, stroke: (bottom: stroke-width), [#info.major]),
+      // 第二行：指导教师
+      table.cell(align: center + bottom, [指 导 教 师]),
+      table.cell(align: center + horizon, stroke: (bottom: stroke-width), [#info.supervisor.intersperse(" ").sum()]),
+      // 第三行：培养单位
+      table.cell(align: center + bottom, [培 养 单 位]),
+      table.cell(align: center + horizon, stroke: (bottom: stroke-width), [#info.department]),
+      // 第四行：申请日期
+      table.cell(align: center + bottom, [申 请 日 期]),
+      table.cell(align: center + horizon, stroke: (bottom: stroke-width), [#datetime-display(info.submit-date)]),
+    )
   ]
+
 
 
   // ========================================
@@ -189,41 +199,59 @@
 
   set align(center)
 
-  v(80pt)
+  v(1 * 10.5pt * 1.4)  // 约 15pt
 
   // 校名
-  text(size: 字号.一号, font: fonts.宋体, weight: "bold")[西 北 工 业 大 学]
-
-  v(30pt)
-
-  // 学位论文类型
-  text(size: 28pt, font: fonts.宋体, spacing: 200%, weight: "bold",
-    if doctype == "doctor" { "博 士 学 位 论 文" } else { "硕 士 学 位 论 文" },
-  )
-
-  v(60pt)
-
-  // 论文信息（简洁格式）
-  set text(font: fonts.宋体, size: 字号.三号)
-
-  let major-label = if degree == "professional" { "专业领域：" } else { "学科专业：" }
-
-  align(left)[
-    #grid(
-      columns: (80pt, 1fr),
-      row-gutter: 15pt,
-      [题目：],
-      underline(info.title.sum()),
-      [#major-label],
-      underline(info.major),
-      [作者：],
-      underline(anonymous-text("author", info.author)),
-      [指导教师：],
-      underline(info.supervisor.intersperse(" ").sum()),
-    )
+  text(size: 字号.三号, font: fonts.宋体, weight: "regular")[
+    西 北 工 业 大 学
   ]
 
-  v(80pt)
+  v(5mm)
+
+  // 学位论文类型
+  text(size: 字号.一号, font: fonts.宋体, weight: "regular")[
+    #if doctype == "doctor" { "博 士 学 位 论 文" } else { "硕 士 学 位 论 文" }
+  ]
+
+  v(5mm)
+
+  v(6 * 14pt * 1.5)  // 约 126pt
+
+  // 论文信息（简洁格式）
+  set text(font: fonts.宋体, size: 字号.二号)
+
+  let major-label = if degree == "professional" { "专业领域" } else { "学科专业" }
+
+  // 题目行
+  grid(
+    columns: (auto, 1fr),
+    column-gutter: 0pt,
+    align(right)[题目：],
+    align(center)[
+      #box(width: 12cm, info.title.sum())
+    ],
+  )
+  // 下划线
+  box(width: 12cm, underline(stroke: stroke-width, offset: 2pt, extent: 2pt)[#h(1fr)])
+
+  v(6 * 10.5pt * 1.5)  // 约 94pt
+
+  // 其他信息
+  set text(font: fonts.宋体, size: 字号.三号)
+
+  grid(
+    columns: (auto, 1fr),
+    column-gutter: 0pt,
+    row-gutter: 6pt,
+    align(right)[#major-label：],
+    underline(stroke: stroke-width, offset: 2pt, extent: 2pt)[#h(1fr)#info.major#h(1fr)],
+    align(right)[作者：],
+    underline(stroke: stroke-width, offset: 2pt, extent: 2pt)[#h(1fr)#anonymous-text("author", info.author)#h(1fr)],
+    align(right)[指导教师：],
+    underline(stroke: stroke-width, offset: 2pt, extent: 2pt)[#h(1fr)#info.supervisor.intersperse(" ").sum()#h(1fr)],
+  )
+
+  v(2 * 10.5pt * 1.5)  // 约 31pt
 
   // 日期
   text(font: fonts.宋体, size: 字号.三号, datetime-display(info.submit-date))
@@ -237,42 +265,42 @@
   set text(font: fonts.宋体, size: 字号.小四)
   set par(leading: 1.5em)
 
-  v(45pt)
+  v(3 * 14pt * 1.4)  // 约 59pt
 
-  text(font: fonts.黑体, size: 字号.二号, weight: "bold", info.title-en.intersperse("\n").sum())
+  // 标题
+  set text(font: fonts.宋体, size: 字号.二号)
+  text(font: "Times New Roman", weight: "bold")[Title: ]
+  text(font: "Times New Roman", size: 字号.三号, info.title-en.intersperse(" ").sum())
 
-  v(30pt)
+  v(3 * 14pt * 1.4)  // 约 59pt
 
-  text(size: 字号.四号)[by]
+  // 作者信息
+  set text(font: "Times New Roman", size: 字号.小三)
+  text(weight: "bold")[By]
 
-  v(-6pt)
+  v(3pt)
 
-  text(font: fonts.黑体, size: 字号.四号, weight: "bold", anonymous-text("author-en", info.author-en))
+  text(weight: "regular", anonymous-text("author-en", info.author-en))
 
-  v(11pt)
+  v(3pt)
 
-  text(size: 字号.四号)[Under the Supervision of Professor]
+  text(weight: "bold")[Under the Supervision of Professor]
 
-  v(-6pt)
+  text(anonymous-text("supervisor-en", info.supervisor-en))
 
-  text(font: fonts.黑体, size: 字号.四号, anonymous-text("supervisor-en", info.supervisor-en))
+  v(4 * 14pt * 1.4)  // 约 78pt
 
-  if info.supervisor-ii-en != "" {
-    v(-4pt)
-    text(font: fonts.黑体, size: 字号.四号, anonymous-text("supervisor-ii-en", info.supervisor-ii-en))
-    v(-9pt)
-  }
+  // 学位信息
+  set text(font: "Times New Roman", size: 字号.小三)
+  [A Dissertation Submitted to]
 
-  v(26pt)
+  [Northwestern Polytechnical University]
 
-  [
-    A Dissertation Submitted to  \
-    Northwestern Polytechnical University  \
-    In Partial Fulfillment of The Requirement  \
-    For The Degree of  \
-  ]
+  v(1 * 14pt * 1.4)  // 约 20pt
 
-  v(6pt)
+  [In Partial Fulfillment of The Requirement]
+
+  [For The Degree of]
 
   let degree-en-text = if info.degree-en == auto {
     if doctype == "doctor" { "Philosophy" } else { "Engineering" }
@@ -280,25 +308,19 @@
     info.degree-en
   }
 
-  smallcaps(if doctype == "doctor" { "Doctor of " + degree-en-text } else { "Master of " + degree-en-text })
-
-  v(6pt)
-
-  [in]
-
-  v(6pt)
-
-  info.major-en
-
-  v(40pt)
-
-  if not anonymous {
-    text(size: 字号.三号, font: fonts.宋体, weight: "bold")[西北工业大学]
+  let degree-title = if doctype == "doctor" { "Doctor of " + degree-en-text } else { "Master of " + degree-en-text }
+  if doctype == "doctor" {
+    text(weight: "bold", degree-title + " in " + info.major-en)
+  } else {
+    text(degree-title + " in " + info.major-en)
   }
 
-  v(20pt)
+  v(4 * 14pt * 1.4)  // 约 78pt
 
-  datetime-en-display(info.submit-date)
+  // 地点和日期
+  [Xi'an, P.R. China]
+
+  text(font: "Times New Roman", datetime-en-display(info.submit-date))
 
 
   // ========================================
@@ -306,52 +328,52 @@
   // ========================================
   pagebreak(weak: true, to: if twoside { "odd" })
 
-  v(50pt)
+  set text(font: fonts.宋体, size: 字号.小四)
 
-  align(center, text(size: 字号.三号, font: fonts.宋体, weight: "bold")[学位论文评阅人和答辩委员会名单])
+  v(1 * 22pt * 1.2)  // 约 26pt
 
-  v(30pt)
+  // 页面标题
+  align(center, text(font: fonts.黑体, size: 字号.三号)[学位论文评阅人和答辩委员会名单])
 
   // 评阅人表格
+  v(1 * 22pt * 1.2)  // 约 26pt
+
   align(center)[
-    #text(font: fonts.宋体, size: 字号.小三, weight: "bold")[学位论文评阅人名单]
+    #text(font: fonts.黑体, size: 字号.四号)[学位论文评阅人名单]
 
-    #v(10pt)
+    #v(6pt)
 
-    #block(width: 400pt)[
-      #table(
-        columns: (1fr, 1fr, 2fr),
-        stroke: (x: stroke-width, y: stroke-width),
-        inset: (x: 8pt, y: 6pt),
-        [*姓名*], [*职称*], [*工作单位*],
-        table.cell(colspan: 3, [（评阅人信息待填写）]),
-      )
-    ]
+    #table(
+      columns: (3.71cm, 2.83cm, 8.73cm),
+      stroke: (x: stroke-width, y: stroke-width),
+      inset: (x: 4pt, y: 8pt),
+      align: center,
+      [*姓名*], [*职称*], [*工作单位*],
+      table.cell(colspan: 3, [（评阅人信息待填写）]),
+    )
   ]
 
-  v(30pt)
-
   // 答辩委员会表格
+  v(1 * 22pt * 1.2)  // 约 26pt
+
   align(center)[
-    #text(font: fonts.宋体, size: 字号.小三, weight: "bold")[答辩委员会名单]
+    #text(font: fonts.黑体, size: 字号.四号)[答辩委员会名单]
 
-    #v(10pt)
+    #v(-8pt)
 
-    #block(width: 450pt)[
-      #table(
-        columns: (1fr, 1fr, 1fr, 2fr),
-        stroke: (x: stroke-width, y: stroke-width),
-        inset: (x: 8pt, y: 6pt),
-        [*答辩日期*], [], [], [],
-        [ ], [ ], [ ], [ ],
-        [*答辩委员会*], [*姓名*], [*职称*], [*工作单位*],
-        [*主席*], [ ], [ ], [ ],
-        [*委员*], [ ], [ ], [ ],
-        [*委员*], [ ], [ ], [ ],
-        [*委员*], [ ], [ ], [ ],
-        [*委员*], [ ], [ ], [ ],
-        [*秘书*], [ ], [ ], [ ],
-      )
-    ]
+    #table(
+      columns: (3.76cm, 2.68cm, 2.25cm, 6.75cm),
+      stroke: (x: stroke-width, y: stroke-width),
+      inset: (x: 4pt, y: 8pt),
+      align: center,
+      [*答辩日期*], table.cell(colspan: 3, [20XX 年 XX 月 XX 日]),
+      [*答辩委员会*], [*姓名*], [*职称*], [*工作单位*],
+      [*主席*], [ ], [ ], [ ],
+      [*委员*], [ ], [ ], [ ],
+      [*委员*], [ ], [ ], [ ],
+      [*委员*], [ ], [ ], [ ],
+      [*委员*], [ ], [ ], [ ],
+      [*秘书*], [ ], [ ], [ ],
+    )
   ]
 }
