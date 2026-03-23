@@ -42,7 +42,7 @@
     #invisible-heading(level: 1, outlined: outlined, outline-title)
 
     #align(center)[
-      #set text(font: fonts.黑体, size: 字号.三号, weight: "bold")
+      #set text(font: "Times New Roman", size: 字号.三号, weight: "bold")
       #v(2em)
       Abstract
     ]
@@ -50,13 +50,13 @@
     #v(1em)
 
     #[
-      #set text(font: fonts.宋体, size: 字号.小四)
+      #set text(font: "Times New Roman", size: 字号.小四)
       #set par(first-line-indent: (amount: 2em, all: true))
       #body
     ]
 
     #v(1em)
-    #text(size: 字号.小四)[
+    #text(font: "Times New Roman", size: 字号.小四)[
       #strong[Key words:] #(("",) + keywords.intersperse("; ")).sum()
     ]
 
