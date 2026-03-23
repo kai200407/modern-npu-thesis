@@ -20,23 +20,22 @@
   academic-achievements,
   add-blank-even-page,
 ) = documentclass(
-  doctype: "master", // "bachelor" | "master" | "doctor" | "postdoc", 文档类型，默认为本科生 bachelor
-  // degree: "academic",  // "academic" | "professional", 学位类型，默认为学术型 academic
-  // anonymous: true,  // 盲审模式
-  twoside: true,
+  doctype: "master", // "bachelor" | "master" | "doctor",
+  degree: "professional", // "academic" | "professional", 学位类型
+  anonymous: false, // 是否开启盲审模式
   info: (
     title: ("基于 Typst 的", "西北工业大学学位论文"),
     title-en: "My Title in English",
     grade: "20XX",
     student-id: "1234567890",
-    author: "张三",
-    author-en: "Zhang San",
-    department: "某学院",
-    department-en: "School of XX",
-    major: "某专业",
-    major-en: "XX",
-    supervisor: ("李四", "教授"),
-    supervisor-en: "Li Si",
+    clc: "TP311.1", // 分类号
+    author: "航小天",
+    author-en: "Xiaotian Hang",
+    department: "计算机学院",
+    major: "计算机科学与技术",
+    major-en: "Computer Science and Technology",
+    supervisor: ("张三", "教授"),
+    supervisor-en: "San Zhang",
     submit-date: datetime.today(),
     // 评阅人名单
     reviewers: (
@@ -225,17 +224,9 @@ $ F_n = floor(1 / sqrt(5) phi.alt^n) $
 实验设计内容。
 
 
-// 正文结束，添加空白偶数页
-
-// 参考文献
-#pagebreak()
-#v(1fr)
-#pagebreak()
-#heading(level: 1, numbering: none, outlined: true, [参考文献]) <no-auto-pagebreak>
+// 正文结束
+#heading(level: 1, numbering: none, outlined: true, [参考文献])
 #bilingual-bibliography(full: true, title: none)
-
-#pagebreak()
-#v(1fr)
 
 // 附录
 #appendix[
@@ -244,9 +235,6 @@ $ F_n = floor(1 / sqrt(5) phi.alt^n) $
 
   附录内容。
 ]
-
-#pagebreak()
-#v(1fr)
 
 // 致谢
 #acknowledgement[
@@ -263,9 +251,6 @@ $ F_n = floor(1 / sqrt(5) phi.alt^n) $
 
   [1] 项目名称，项目编号，起止时间。
 ]
-
-#pagebreak()
-#v(1fr)
 
 // 声明页（插入扫描件PDF）
 #page(margin: 0pt)[

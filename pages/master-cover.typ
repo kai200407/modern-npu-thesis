@@ -193,7 +193,7 @@
       table.cell(align: center + horizon, stroke: (bottom: stroke-width), [#info.major]),
       // 第二行：指导教师
       table.cell(align: center + bottom, [指 导 教 师]),
-      table.cell(align: center + horizon, stroke: (bottom: stroke-width), [#info.supervisor.intersperse(" ").sum()]),
+      table.cell(align: center + horizon, stroke: (bottom: stroke-width), [#anonymous-text("supervisor", info.supervisor.intersperse(" ").sum())]),
       // 第三行：培养单位
       table.cell(align: center + bottom, [培 养 单 位]),
       table.cell(align: center + horizon, stroke: (bottom: stroke-width), [#info.department]),
@@ -268,10 +268,10 @@
       table.cell(align: center + bottom, stroke: (bottom: stroke-width), [#info.major]),
       // 第二行：作者
       table.cell(align: center + bottom, [作　　者:]),
-      table.cell(align: center + bottom, stroke: (bottom: stroke-width), [#info.author]),
+      table.cell(align: center + bottom, stroke: (bottom: stroke-width), [#anonymous-text("author", info.author)]),
       // 第三行：指导教师
       table.cell(align: center + bottom, [指导教师:]),
-      table.cell(align: center + bottom, stroke: (bottom: stroke-width), [#info.supervisor.at(0)]),
+      table.cell(align: center + bottom, stroke: (bottom: stroke-width), [#anonymous-text("supervisor", info.supervisor.at(0))]),
     )
   ]
 
@@ -387,7 +387,7 @@
       inset: (x: 4pt, y: 8pt),
       align: center,
       [*姓名*], [*职称*], [*工作单位*],
-      ..info.reviewers.map(r => ([#r.name], [#r.title], [#r.unit])).flatten(),
+      ..info.reviewers.map(r => ([#anonymous-text("reviewer", r.name)], [#r.title], [#r.unit])).flatten(),
     )
   ]
 
@@ -412,7 +412,7 @@
       align: center,
       [*答辩日期*], table.cell(colspan: 3, [#defence-date-display]),
       [*答辩委员会*], [*姓名*], [*职称*], [*工作单位*],
-      ..info.defence-committee.members.map(m => ([*#m.role*], [#m.name], [#m.title], [#m.unit])).flatten(),
+      ..info.defence-committee.members.map(m => ([*#m.role*], [#anonymous-text("reviewer", m.name)], [#m.title], [#m.unit])).flatten(),
     )
   ]
 }

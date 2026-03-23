@@ -52,15 +52,25 @@
     // 标记一个不可见的标题用于目录生成
     #invisible-heading(level: 1, outlined: outlined, outline-title)
 
-    #align(center)[
-      #set text(size: 字号.三号, font: fonts.黑体, weight: "bold")
-
-      #v(2em)
-
-      摘  要
+    #block[
+      #set text(font: fonts.宋体, size: 字号.小四)
+      #set par(leading: 3.6pt)
+      #v(15.6pt, weak: false)
     ]
 
-    #v(1em)
+    #block(width: 100%, above: 8pt, below: 0pt)[
+      #align(center)[
+        #set text(font: fonts.黑体, size: 字号.三号)
+        #set par(leading: 4pt)
+        摘　要
+      ]
+    ]
+
+    #block[
+      #set text(font: fonts.宋体, size: 字号.小四)
+      #set par(leading: 3.6pt)
+      #v(15.6pt, weak: false)
+    ]
 
     #[
       #set par(first-line-indent: (amount: 2em, all: true))

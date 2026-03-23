@@ -1,4 +1,4 @@
-#import "../utils/style.typ": 字号, 字体
+#import "../utils/style.typ": 字体, 字号
 #import "../utils/invisible-heading.typ": invisible-heading
 
 // 西北工业大学研究生学术成果页
@@ -24,5 +24,8 @@
 
       #body
     ]
+    if twoside {
+      pagebreak(weak: true, to: "odd")
+    }
   }
 }

@@ -126,7 +126,8 @@
       // 如果打上了 no-auto-pagebreak 标签，则不自动换页
       if "label" not in it.fields() or str(it.label) != "no-auto-pagebreak" {
         if it.level == 1 {
-          pagebreak()
+          // 如果是双面打印，一级标题换页需要跳转到奇数页
+          pagebreak(weak: true, to: if twoside { "odd" })
         } else {
           pagebreak(weak: true)
         }

@@ -38,7 +38,7 @@
   doctype: "bachelor", // "bachelor" | "master" | "doctor" | "postdoc"，文档类型，默认为本科生 bachelor
   degree: "academic", // "academic" | "professional"，学位类型，默认为学术型 academic
   nl-cover: false, // TODO: 是否使用国家图书馆封面，默认关闭
-  twoside: false, // 双面模式，会加入空白页，便于打印
+  twoside: true, // 双面模式，会加入空白页，便于打印
   anonymous: false, // 盲审模式
   bibliography: none, // 原来的参考文献函数
   fonts: (:), // 字体，应传入「宋体」、「黑体」、「楷体」、「仿宋」、「等宽」
