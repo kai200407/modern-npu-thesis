@@ -1,5 +1,6 @@
 #import "../utils/style.typ": 字号, 字体
 #import "../utils/invisible-heading.typ": invisible-heading
+#import "../utils/header.typ": header-render
 
 // 西北工业大学研究生中文摘要页
 #let master-abstract(
@@ -15,8 +16,8 @@
   outline-title: "摘 要",
   outlined: true,
   anonymous-info-keys: ("author", "grade", "supervisor", "supervisor-ii"),
-  leading: 1.5em,
-  spacing: 1.5em,
+  leading: 1.0em,
+  spacing: 1.0em,
   body,
 ) = {
   // 1.  默认参数
@@ -42,15 +43,18 @@
   [
     #set par(leading: leading, spacing: spacing, justify: true)
 
+    // 页眉
+    #set page(header: header-render([摘　要], fonts: fonts))
+
     // 标记一个不可见的标题用于目录生成
     #invisible-heading(level: 1, outlined: outlined, outline-title)
 
     #align(center)[
-      #set text(font: fonts.黑体, size: 字号.三号, weight: "bold")
+      #set text(font: fonts.黑体, size: 字号.三号)
 
       #v(2em)
 
-      摘  要
+      摘　要
     ]
 
     #v(1em)
@@ -64,8 +68,6 @@
 
     #v(1em)
 
-    #text(font: fonts.宋体, size: 字号.小四)[
-      关键词：#(("",)+ keywords.intersperse("；")).sum()
-    ]
+    #h(2em)#text(font: fonts.黑体, size: 字号.小四)[关键词：]#text(font: fonts.宋体, size: 字号.小四)[#(("",)+ keywords.intersperse("；")).sum()]
   ]
 }

@@ -1,5 +1,6 @@
-#import "../utils/style.typ": 字号, 字体
+#import "../utils/style.typ": 字体, 字号
 #import "../utils/invisible-heading.typ": invisible-heading
+#import "../utils/header.typ": header-render
 
 // 西北工业大学研究生英文摘要页
 #let master-abstract-en(
@@ -22,12 +23,15 @@
   // 1.  默认参数
   fonts = 字体 + fonts
   info = (
-    title-en: "NPU Thesis Template for Typst",
-    author-en: "Zhang San",
-    department-en: "XX School",
-    major-en: "XX",
-    supervisor-en: "Li Si",
-  ) + info
+    (
+      title-en: "NPU Thesis Template for Typst",
+      author-en: "Zhang San",
+      department-en: "XX School",
+      major-en: "XX",
+      supervisor-en: "Li Si",
+    )
+      + info
+  )
 
   // 2.  对参数进行处理
   // 2.1 如果是字符串，则使用换行符将标题分隔为列表
@@ -40,6 +44,9 @@
 
   [
     #set par(leading: leading, spacing: spacing, justify: true)
+
+    // 页眉
+    #set page(header: header-render([Abstract], fonts: fonts))
 
     // 标记一个不可见的标题用于目录生成
     #invisible-heading(level: 1, outlined: outlined, outline-title)
@@ -63,8 +70,8 @@
 
     #v(1em)
 
-    #text(font: fonts.宋体, size: 字号.小四)[
-      Key words: #(("",)+ keywords.intersperse("; ")).sum()
+    #text(size: 字号.小四)[
+      Key words: #(("",) + keywords.intersperse("; ")).sum()
     ]
   ]
 }

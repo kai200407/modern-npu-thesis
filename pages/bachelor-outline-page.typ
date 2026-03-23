@@ -1,5 +1,6 @@
 #import "../utils/invisible-heading.typ": invisible-heading
 #import "../utils/style.typ": 字号, 字体
+#import "../utils/header.typ": header-render
 
 // 本科生目录生成
 #let bachelor-outline-page(
@@ -43,6 +44,9 @@
 
   // 2.  正式渲染
   pagebreak(weak: true, to: if twoside { "odd" })
+
+  // 页眉
+  set page(header: header-render([目　录], fonts: fonts))
 
   // 默认显示的字体
   set text(font: reference-font, size: reference-size)

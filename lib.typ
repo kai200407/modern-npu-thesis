@@ -113,6 +113,7 @@
     doc: (..args) => {
       doc(
         ..args,
+        doctype: doctype,
         info: info + args.named().at("info", default: (:)),
       )
     },

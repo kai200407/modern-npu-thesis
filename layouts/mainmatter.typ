@@ -3,6 +3,7 @@
 #import "../utils/custom-numbering.typ": custom-numbering
 #import "../utils/custom-heading.typ": heading-display, active-heading, current-heading
 #import "../utils/unpairs.typ": unpairs
+#import "../utils/header.typ": header-render
 
 #let mainmatter(
   // documentclass 传入参数
@@ -144,12 +145,21 @@
             // 一级标题和二级标题
             let first-level-heading = if not twoside or calc.rem(loc.page(), 2) == 0 { heading-display(active-heading(level: 1)) } else { "" }
             let second-level-heading = if not twoside or calc.rem(loc.page(), 2) == 1 { heading-display(active-heading(level: 2, prev: false)) } else { "" }
-            set text(font: fonts.楷体, size: 字号.五号)
-            stack(
-              first-level-heading + h(1fr) + second-level-heading,
-              v(0.25em),
-              if first-level-heading != "" or second-level-heading != "" { line(length: 100%, stroke: stroke-width + black) },
-            )
+            // 使用统一的页眉格式
+            set text(font: fonts.宋体, size: 字号.小五)
+            align(center)[
+              #if first-level-heading != "" and second-level-heading != "" {
+                first-level-heading + h(1fr) + second-level-heading
+              } else if first-level-heading != "" {
+                first-level-heading
+              } else if second-level-heading != "" {
+                second-level-heading
+              }
+            ]
+            v(-0.5em)
+            line(length: 100%, stroke: 3pt + black)
+            v(-0.7em)
+            line(length: 100%, stroke: 0.5pt + black)
           } else {
             header-render(loc)
           }
