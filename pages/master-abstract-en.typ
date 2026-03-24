@@ -42,9 +42,9 @@
   [
     #set par(leading: leading, spacing: spacing, justify: true)
 
-    // 英文摘要标题使用 Times New Roman，其他样式统一配置
+    // 英文摘要标题使用 Times New Roman，加粗，其他样式统一配置
     #show heading.where(level: 1): it => {
-      set text(font: "Times New Roman", size: preface-heading-size, weight: preface-heading-weight)
+      set text(font: "Times New Roman", size: preface-heading-size, weight: "bold")
       set block(above: 0pt, below: preface-heading-below)
       align(center, it)
     }
