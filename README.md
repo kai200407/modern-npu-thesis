@@ -2,12 +2,11 @@
 
 西北工业大学毕业论文（设计）的 Typst 模板，能够简洁、快速、持续生成 PDF 格式的毕业论文。
 
-> 本模板基于 [modern-nju-thesis](https://github.com/nju-lug/modern-nju-thesis) 开发。
+本项目目前仅支持硕博论文模板，后续计划加入对本科论文的支持。
 
-## 声明与风险
+> 本模板基于 [modern-nju-thesis](https://github.com/nju-lug/modern-nju-thesis) 开发，设计过程中还参考了 [pkuthss-typst](https://github.com/pku-typst/pkuthss-typst) 的实现。
 
-- Typst 是一门新生的排版语言，可能不如 Word 或 LaTeX 成熟。
-- 该模板并非官方模板，而是民间开源项目，**存在不被认可的风险**。
+> 若想使用 LaTeX 模板，请移步 [nwputhesis](https://github.com/1195343015/nwputhesis)。
 
 ## 优势与特性
 
@@ -22,18 +21,8 @@
 ### 本地开发（推荐）
 
 1. 安装 VS Code 并安装 [Tinymist Typst](https://marketplace.visualstudio.com/items?itemName=myriad-dreamin.tinymist) 插件。
-2. 安装目录下的 `fonts` 文件夹中的推荐字体，防止字体缺失。
-3. 将本项目作为工作区在 VS Code 中打开，打开 `thesis.typ` 文件。
-4. 按下 `Ctrl + K V` 进行实时编辑和预览。
-
-### 在线编辑
-
-在 Typst 官方的 [Web App](https://typst.app/) 中新建项目并上传本项目文件。
-注意：Web App 可能缺失部分特定中文字体，需要手动上传字体文件！
-
-## 致谢
-
-感谢所有 Typst 中文社区的贡献者以及南京大学 Typst 社区的优秀前置工作。
+2. 将本项目作为工作区在 VS Code 中打开，打开 `thesis.typ` 文件。
+3. 进行实时编辑和预览。
 
 ## License
 
