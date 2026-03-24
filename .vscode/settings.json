@@ -1,0 +1,6 @@
+{
+  "tinymist.typstExtraArgs": [
+    "--font-path",
+    "fonts"
+  ]
+}

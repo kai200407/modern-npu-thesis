@@ -24,6 +24,8 @@
 2. 将本项目作为工作区在 VS Code 中打开，打开 `thesis.typ` 文件。
 3. 进行实时编辑和预览。
 
+仓库已提供工作区配置 [.vscode/settings.json](c:/Users/yjy/Desktop/nwputhesis-typst/.vscode/settings.json)，会为 Tinymist 默认追加 `--font-path fonts`，因此在不同系统下都会优先使用仓库内自带的 Windows 字体文件。
+
 ## License
 
 MIT License
