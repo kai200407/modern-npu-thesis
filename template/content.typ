@@ -58,13 +58,7 @@
   ],
   // 学术成果页（研究生使用）
   academic-achievements: [
-    一、发表的学术论文
-
-    [1] 作者. 论文标题[J]. 期刊名, 年份, 卷(期): 页码.
-
-    二、参加的科研项目
-
-    [1] 项目名称，项目编号，起止时间。
+    不同类型的成果列表书写格式与参考文献相同。对于学术论文，如已发表的被EI或SCI收录，应标明收录号；SCI论文一般应标注发表当年的影响因子；对已录用但尚未发表的学术论文，请注明是否EI或SCI刊源。
   ],
   // 声明扫描页
   scan-declaration: image("images/声明.pdf", width: 100%, height: 100%),
@@ -72,132 +66,132 @@
 
 #let thesis-body = [
 
-// ==========================================
-// 正文开始
-// ==========================================
+  // ==========================================
+  // 正文开始
+  // ==========================================
 
-= 绪论
+  = 绪论
 
-== 研究背景
+  == 研究背景
 
-XXX
+  XXX
 
-=== 研究意义
+  === 研究意义
 
-研究意义内容。
+  研究意义内容。
 
-=== 研究现状
+  === 研究现状
 
-研究现状内容。
+  研究现状内容。
 
-== 研究内容
+  == 研究内容
 
-研究内容概述。
+  研究内容概述。
 
-== 图表测试
+  == 图表测试
 
-引用@tbl:timing-tlt，以及@fig:test。引用图表时，表格和图片分别需要加上 `tbl:`和`fig:` 前缀才能正常显示编号。
+  引用@tbl:timing-tlt，以及@fig:test。引用图表时，表格和图片分别需要加上 `tbl:`和`fig:` 前缀才能正常显示编号。
 
-#figure(
-  table(
-    columns: (1fr, 1fr, 1fr, 1fr),
-    stroke: none,
-    inset: 0.3em,
-    align: center + horizon,
+  #figure(
+    table(
+      columns: (1fr, 1fr, 1fr, 1fr),
+      stroke: none,
+      inset: 0.3em,
+      align: center + horizon,
 
-    table.hline(y: 0, stroke: 0.5pt),
+      table.hline(y: 0, stroke: 0.5pt),
 
-    table.header([t], [1], [2], [3]),
+      table.header([t], [1], [2], [3]),
 
-    table.hline(y: 1, stroke: 0.5pt),
+      table.hline(y: 1, stroke: 0.5pt),
 
-    [y], [0.3s], [0.4s], [0.8s],
+      [y], [0.3s], [0.4s], [0.8s],
 
-    table.hline(y: 2, stroke: 0.5pt),
-  ),
-  caption: [三线表],
-) <timing-tlt>
+      table.hline(y: 2, stroke: 0.5pt),
+    ),
+    caption: [三线表],
+  ) <timing-tlt>
 
-#figure(
-  rect(width: 200pt, height: 100pt, fill: blue.lighten(80%), [测试图片]),
-  caption: [图片测试],
-) <test>
+  #figure(
+    rect(width: 200pt, height: 100pt, fill: blue.lighten(80%), [测试图片]),
+    caption: [图片测试],
+  ) <test>
 
-#figure(
-  grid(
-    columns: (1fr, 1fr),
-    gutter: 1em,
-    align(center)[
-      #image("images/博士论文封面.jpg", width: 60%)
-      (a) 第一个子图说明
-    ],
-    align(center)[
-      #image("images/博士论文封底.jpg", width: 60%)
-      (b) 第二个子图说明
-    ],
-  ),
-  caption: [总图标题],
-) <fig-main>
+  #figure(
+    grid(
+      columns: (1fr, 1fr),
+      gutter: 1em,
+      align(center)[
+        #image("images/博士论文封面.jpg", width: 60%)
+        (a) 第一个子图说明
+      ],
+      align(center)[
+        #image("images/博士论文封底.jpg", width: 60%)
+        (b) 第二个子图说明
+      ],
+    ),
+    caption: [总图标题],
+  ) <fig-main>
 
-#figure(
-  grid(
-    columns: (1fr, 1fr),
-    rows: (200pt, 200pt),
-    gutter: 1em,
-    align(center)[
-      #image("images/专硕论文封面.jpg", width: 50%)
+  #figure(
+    grid(
+      columns: (1fr, 1fr),
+      rows: (200pt, 200pt),
+      gutter: 1em,
+      align(center)[
+        #image("images/专硕论文封面.jpg", width: 50%)
 
-      (a) 第一个子图说明
-    ],
-    align(center)[
-      #image("images/专硕论文封底.jpg", width: 50%)
+        (a) 第一个子图说明
+      ],
+      align(center)[
+        #image("images/专硕论文封底.jpg", width: 50%)
 
-      (b) 第二个子图说明
-    ],
+        (b) 第二个子图说明
+      ],
 
-    align(center)[
-      #image("images/学硕论文封面.jpg", width: 50%)
+      align(center)[
+        #image("images/学硕论文封面.jpg", width: 50%)
 
-      (c) 第三个子图说明
-    ],
-    align(center)[
-      #image("images/学硕论文封底.jpg", width: 50%)
+        (c) 第三个子图说明
+      ],
+      align(center)[
+        #image("images/学硕论文封底.jpg", width: 50%)
 
-      (d) 第四个子图说明
-    ],
-  ),
-  caption: [总图标题],
-) <fig-main>
+        (d) 第四个子图说明
+      ],
+    ),
+    caption: [总图标题],
+  ) <fig-main>
 
-== 数学公式
+  == 数学公式
 
-可以像 Markdown 一样写行内公式 $x + y$，以及带编号的行间公式：
+  可以像 Markdown 一样写行内公式 $x + y$，以及带编号的行间公式：
 
-$ phi.alt := (1 + sqrt(5)) / 2 $ <ratio>
+  $ phi.alt := (1 + sqrt(5)) / 2 $ <ratio>
 
-引用数学公式需要加上 `eqt:` 前缀，则由@eqt:ratio，我们有：
+  引用数学公式需要加上 `eqt:` 前缀，则由@eqt:ratio，我们有：
 
-$ F_n = floor(1 / sqrt(5) phi.alt^n) $
+  $ F_n = floor(1 / sqrt(5) phi.alt^n) $
 
-我们也可以通过 `<->` 标签来标识该行间公式不需要编号
+  我们也可以通过 `<->` 标签来标识该行间公式不需要编号
 
-$ y = integral_1^2 x^2 dif x $ <->
+  $ y = integral_1^2 x^2 dif x $ <->
 
-而后续数学公式仍然能正常编号。
+  而后续数学公式仍然能正常编号。
 
-$ F_n = floor(1 / sqrt(5) phi.alt^n) $
+  $ F_n = floor(1 / sqrt(5) phi.alt^n) $
 
-== 参考文献
+  == 参考文献
 
-可以像这样引用参考文献：图书#[@蒋有绪1998]和会议#[@中国力学学会1990]。
+  可以像这样引用参考文献@蒋有绪1998，引用两个以上的文献时，文献之间用逗号分隔，如@WHO1970 @张志祥1998，引用三个以上的文献 @河北绿洲2001 @李炳穆2000 @丁文祥2000。
 
-= 研究方法
+  = 研究方法
 
-== 方法概述
+  == 方法概述
 
-方法概述内容。
+  方法概述内容。
 
-== 实验设计
+  == 实验设计
 
-实验设计内容。
+  实验设计内容。
 ]

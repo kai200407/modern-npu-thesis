@@ -5,6 +5,9 @@
   title: "参考文献",
   full: false,
   style: "gb-7714-2015-numeric",
+  label-shift: 2em,
+  content-shift: -0.2em,
+  content-hanging-indent: -2em,
   mapping: (:),
   extra-comma-before-et-al-trans: false,
   // 用于控制多位译者时表现为 `et al. tran`(false) 还是 `et al., tran`(true)
@@ -15,13 +18,16 @@
 
   // Please fill in the remaining mapping table here
   mapping = (
-    //"等": "et al",
-    "卷": "Vol.",
-    "册": "Bk.",
-    // "译": ", tran",
-    // "等译": "et al. tran",
-    // 注: 请见下方译者数量判断部分。
-  ) + mapping
+    (
+      //"等": "et al",
+      "卷": "Vol.",
+      "册": "Bk.",
+      // "译": ", tran",
+      // "等译": "et al. tran",
+      // 注: 请见下方译者数量判断部分。
+    )
+      + mapping
+  )
 
   let to-string(content) = {
     if content.has("text") {
@@ -37,6 +43,14 @@
     }
   }
 
+  let render-content(text) = {
+    par(hanging-indent: content-hanging-indent)[
+      #h(content-shift)
+      #text
+    ]
+  }
+
+  show grid.cell.where(x: 0): it => [#move(dx: label-shift, dy: 0.1em, it)]
   show grid.cell.where(x: 1): it => {
     // 后续的操作是对 string 进行的。
     let ittext = to-string(it)
@@ -50,7 +64,7 @@
           itt.text.replace(regex("\[Z\]"), "[S]")
         },
       )
-      ittext
+      render-content(ittext)
     } else {
       // 若不是中文文献，进行替换
       // 第xxx卷、第xxx册的情况：变为 Vol. XXX 或 Bk. XXX。
@@ -98,11 +112,12 @@
         // 我想让上面这一行匹配变成非贪婪的，但加问号后没啥效果？
         let comma-in-itt = itt.text.replace(regex(",?\s?译"), "").matches(",")
         if (
-          type(comma-in-itt) == array and 
-          comma-in-itt.len() >= (
-              if allow-comma-in-name {2} else {1}
-            )
-          ) {
+          type(comma-in-itt) == array
+            and comma-in-itt.len()
+              >= (
+                if allow-comma-in-name { 2 } else { 1 }
+              )
+        ) {
           if extra-comma-before-et-al-trans {
             itt.text.replace(regex(",?\s?译"), ", tran")
           } else {
@@ -138,7 +153,7 @@
           // 注意：若替换功能工作良好，应该不会出现 `default` 情形
         },
       )
-      reptext
+      render-content(reptext)
     }
   }
 
