@@ -7,7 +7,7 @@
   style: "gb-7714-2015-numeric",
   label-shift: 2em,
   content-shift: -0.2em,
-  content-hanging-indent: -2em,
+  content-hanging-indent: -1.8em,
   mapping: (:),
   extra-comma-before-et-al-trans: false,
   // 用于控制多位译者时表现为 `et al. tran`(false) 还是 `et al., tran`(true)
