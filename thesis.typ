@@ -1,5 +1,4 @@
-﻿#import "template.typ": nwpu-thesis
-#import "lib/utils/algorithm.typ": algorithm, algorithm-ref, reset-algorithm-counter
+﻿#import "template.typ": nwpu-thesis, algorithm, algorithm-ref
 
 #let thesis-config = (
   doctype: "master", // "bachelor" | "master" | "doctor",
@@ -61,8 +60,6 @@
 )
 
 #let thesis-body = [
-
-  #show heading.where(level: 1): reset-algorithm-counter
 
   = 绪论
 

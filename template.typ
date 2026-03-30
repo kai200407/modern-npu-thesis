@@ -1,4 +1,5 @@
 ﻿#import "lib/layouts/doc.typ": doc
+#import "lib/utils/algorithm.typ": algorithm, algorithm-ref, reset-algorithm-counter
 #import "lib/layouts/preface.typ": preface
 #import "lib/layouts/mainmatter.typ": mainmatter
 #import "lib/layouts/appendix.typ": appendix

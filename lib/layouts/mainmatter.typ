@@ -126,6 +126,10 @@
   set heading(numbering: numbering)
   // 5.2 设置字体、字号、换页及段前段后间距
   show heading: it => {
+    if it.level == 1 {
+      counter(figure.where(kind: "algorithm")).update(0)
+    }
+
     set text(
       font: array-at(heading-font, it.level),
       size: array-at(heading-size, it.level),
