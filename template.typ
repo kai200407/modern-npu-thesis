@@ -24,6 +24,16 @@
 #import "lib/utils/style.typ": 字体, 字号
 
 #let indent = h(2em)
+#let bachelor_style_defaults = (
+  leading: 10pt,
+  spacing: 10pt,
+  heading_leading: (10pt, 10pt, 10pt),
+  preface_heading_leading: 10pt,
+  heading_above: (15.2pt, 10pt, 10pt),
+  heading_below: (14.4pt, 10pt, 10pt),
+  preface_heading_above: 2 * 14pt - 0.7em,
+  preface_heading_below: 2 * 17pt - 0.7em,
+)
 
 // 使用函数闭包特性，通过 `documentclass` 函数类进行全局信息配置，然后暴露出拥有了全局配置的、具体的 `layouts` 和 `templates` 内部函数。
 #let documentclass(
@@ -31,6 +41,14 @@
   degree: "academic", // "academic" | "professional"，学位类型，默认为学术型 academic
   nl-cover: false, // TODO: 是否使用国家图书馆封面，默认关闭
   twoside: true, // 双面模式，会加入空白页，便于打印
+  bachelor_leading: bachelor_style_defaults.leading, // 本科论文统一行距增量
+  bachelor_spacing: bachelor_style_defaults.spacing, // 本科论文统一段间距
+  bachelor_heading_leading: bachelor_style_defaults.heading_leading, // 本科正文各级标题行距
+  bachelor_preface_heading_leading: bachelor_style_defaults.preface_heading_leading, // 本科前后置一级标题行距
+  bachelor_heading_above: bachelor_style_defaults.heading_above, // 本科正文各级标题段前距
+  bachelor_heading_below: bachelor_style_defaults.heading_below, // 本科正文各级标题段后距
+  bachelor_preface_heading_above: bachelor_style_defaults.preface_heading_above, // 本科前后置一级标题段前距
+  bachelor_preface_heading_below: bachelor_style_defaults.preface_heading_below, // 本科前后置一级标题段后距
   colored-cover: false, // 是否开启彩色封面封底
   anonymous: false, // 盲审模式
   bibliography: none, // 原来的参考文献函数
@@ -103,6 +121,14 @@
     degree: degree,
     nl-cover: nl-cover,
     twoside: twoside,
+    bachelor_leading: bachelor_leading,
+    bachelor_spacing: bachelor_spacing,
+    bachelor_heading_leading: bachelor_heading_leading,
+    bachelor_preface_heading_leading: bachelor_preface_heading_leading,
+    bachelor_heading_above: bachelor_heading_above,
+    bachelor_heading_below: bachelor_heading_below,
+    bachelor_preface_heading_above: bachelor_preface_heading_above,
+    bachelor_preface_heading_below: bachelor_preface_heading_below,
     anonymous: anonymous,
     fonts: fonts,
     info: info,
@@ -117,13 +143,18 @@
       )
     },
     preface: (it, ..args) => {
-      preface(
-        twoside: twoside,
-        doctype: doctype,
-        display-header: true,
-        fonts: fonts + args.named().at("fonts", default: (:)),
-        ..args,
-        it,
+        preface(
+          twoside: twoside,
+          doctype: doctype,
+          display-header: true,
+          bachelor_leading: bachelor_leading,
+          bachelor_spacing: bachelor_spacing,
+          bachelor_preface_heading_leading: bachelor_preface_heading_leading,
+          bachelor_preface_heading_above: bachelor_preface_heading_above,
+          bachelor_preface_heading_below: bachelor_preface_heading_below,
+          fonts: fonts + args.named().at("fonts", default: (:)),
+          ..args,
+          it,
       )
     },
     mainmatter: (..args) => {
@@ -132,6 +163,11 @@
           twoside: twoside,
           doctype: doctype,
           display-header: true,
+          bachelor_leading: bachelor_leading,
+          bachelor_spacing: bachelor_spacing,
+          bachelor_heading_leading: bachelor_heading_leading,
+          bachelor_heading_above: bachelor_heading_above,
+          bachelor_heading_below: bachelor_heading_below,
           ..args,
           fonts: fonts + args.named().at("fonts", default: (:)),
         )
@@ -140,6 +176,11 @@
           twoside: twoside,
           doctype: doctype,
           display-header: true,
+          bachelor_leading: bachelor_leading,
+          bachelor_spacing: bachelor_spacing,
+          bachelor_heading_leading: bachelor_heading_leading,
+          bachelor_heading_above: bachelor_heading_above,
+          bachelor_heading_below: bachelor_heading_below,
           ..args,
           fonts: fonts + args.named().at("fonts", default: (:)),
         )
@@ -196,6 +237,8 @@
         bachelor-abstract(
           anonymous: anonymous,
           twoside: twoside,
+          leading: bachelor_leading,
+          spacing: bachelor_spacing,
           ..args,
           fonts: fonts + args.named().at("fonts", default: (:)),
           info: info + args.named().at("info", default: (:)),
@@ -220,6 +263,8 @@
         bachelor-abstract-en(
           anonymous: anonymous,
           twoside: twoside,
+          leading: bachelor_leading,
+          spacing: bachelor_spacing,
           ..args,
           fonts: fonts + args.named().at("fonts", default: (:)),
           info: info + args.named().at("info", default: (:)),
@@ -231,6 +276,8 @@
       bachelor-outline-page(
         twoside: twoside,
         doctype: doctype,
+        leading: if doctype == "bachelor" { bachelor_leading } else { auto },
+        spacing: if doctype == "bachelor" { bachelor_spacing } else { 0pt },
         ..args,
         fonts: fonts + args.named().at("fonts", default: (:)),
       )
@@ -249,6 +296,8 @@
         anonymous: anonymous,
         twoside: twoside,
         doctype: doctype,
+        leading: bachelor_leading,
+        spacing: bachelor_spacing,
         fonts: fonts + args.named().at("fonts", default: (:)),
         ..args,
       )
@@ -286,6 +335,14 @@
   degree: "academic", // "academic" | "professional"
   nl-cover: false,
   twoside: true,
+  bachelor_leading: bachelor_style_defaults.leading,
+  bachelor_spacing: bachelor_style_defaults.spacing,
+  bachelor_heading_leading: bachelor_style_defaults.heading_leading,
+  bachelor_preface_heading_leading: bachelor_style_defaults.preface_heading_leading,
+  bachelor_heading_above: bachelor_style_defaults.heading_above,
+  bachelor_heading_below: bachelor_style_defaults.heading_below,
+  bachelor_preface_heading_above: bachelor_style_defaults.preface_heading_above,
+  bachelor_preface_heading_below: bachelor_style_defaults.preface_heading_below,
   colored-cover: false,
   anonymous: false,
   fonts: (:),
@@ -332,6 +389,14 @@
     degree: degree,
     nl-cover: nl-cover,
     twoside: effective_twoside,
+    bachelor_leading: bachelor_leading,
+    bachelor_spacing: bachelor_spacing,
+    bachelor_heading_leading: bachelor_heading_leading,
+    bachelor_preface_heading_leading: bachelor_preface_heading_leading,
+    bachelor_heading_above: bachelor_heading_above,
+    bachelor_heading_below: bachelor_heading_below,
+    bachelor_preface_heading_above: bachelor_preface_heading_above,
+    bachelor_preface_heading_below: bachelor_preface_heading_below,
     colored-cover: colored-cover,
     anonymous: anonymous,
     fonts: fonts,
@@ -389,7 +454,12 @@
     }
 
     if design_summary != none {
-      design-summary-page(twoside: effective_twoside, fonts: fonts)[#design_summary]
+      design-summary-page(
+        twoside: effective_twoside,
+        fonts: fonts,
+        leading: bachelor_leading,
+        spacing: bachelor_spacing,
+      )[#design_summary]
       close-backmatter-section(appendix != none or scan-declaration != none)
     }
 

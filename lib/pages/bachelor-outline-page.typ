@@ -103,11 +103,7 @@
   }
   // 行间距
   if leading == auto {
-    leading = if is-graduate {
-      14pt
-    } else {
-      2.4pt
-    }
+    leading = if is-graduate { 14pt } else { 2.4pt }
   }
 
   // 2.  正式渲染
@@ -123,6 +119,7 @@
     // 目录标题：字体由 title-text-args 控制，间距使用统一配置
     #show heading.where(level: 1, numbering: none): it => {
       set text(..title-text-args, size: preface-heading-size, weight: preface-heading-weight)
+      set par(leading: leading, spacing: 0pt)
       set block(above: 0pt, below: preface-heading-below)
       align(center, it)
     }

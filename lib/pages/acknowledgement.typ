@@ -8,6 +8,8 @@
   anonymous: false,
   twoside: false,
   doctype: "master",
+  leading: 2.4pt,
+  spacing: 0pt,
   fonts: (:),
   // 其他参数
   title: auto,
@@ -24,14 +26,14 @@
     [
       #set text(font: fonts.宋体, size: 字号.小四)
       #set par(
-        leading: if doctype == "bachelor" { 2.4pt } else { 0.9em },
-        spacing: 0pt,
+        leading: if doctype == "bachelor" { leading } else { 0.9em },
+        spacing: if doctype == "bachelor" { spacing } else { 0pt },
         justify: true,
         first-line-indent: if doctype == "bachelor" { (amount: 26pt, all: true) } else { (amount: 2em, all: true) },
       )
 
       // 使用统一的一级标题样式
-      #show heading.where(level: 1, numbering: none): it => preface-heading-style(it, fonts)
+      #show heading.where(level: 1, numbering: none): it => preface-heading-style(it, fonts, leading: leading)
 
       #v(preface-heading-above)
       #heading(level: 1, numbering: none, outlined: outlined, title) <no-auto-pagebreak>

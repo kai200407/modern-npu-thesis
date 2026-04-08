@@ -10,6 +10,11 @@
   // documentclass 传入参数
   twoside: false,
   doctype: "bachelor",
+  bachelor_leading: 2.4pt,
+  bachelor_spacing: 0pt,
+  bachelor_heading_leading: (2.4pt, 2.4pt, 2.4pt),
+  bachelor_heading_above: (15.2pt, -3pt, -1.5pt),
+  bachelor_heading_below: (14.4pt, 2pt, -1pt),
   fonts: (:),
   // 其他参数
   leading: auto,
@@ -23,6 +28,7 @@
   heading-font: auto,
   heading-size: (字号.三号, 字号.四号, 字号.小四),
   heading-weight: ("regular", "regular", "regular"),
+  heading_leading: auto,
   // 一级标题使用统一配置，二三级保持原有值
   heading-above: auto,
   heading-below: auto,
@@ -62,10 +68,10 @@
     }
   }
   if leading == auto {
-    leading = if is-graduate { 0.9em } else { 2.4pt }
+    leading = if is-graduate { 0.9em } else { bachelor_leading }
   }
   if spacing == auto {
-    spacing = if is-graduate { 1.0em } else { 0pt }
+    spacing = if is-graduate { 1.0em } else { bachelor_spacing }
   }
   if first-line-indent == auto {
     first-line-indent = if is-graduate {
@@ -96,18 +102,25 @@
   if heading-font == auto {
     heading-font = (fonts.黑体,)
   }
+  if heading_leading == auto {
+    heading_leading = if is-graduate {
+      (0.9em, 0.9em, 0.9em)
+    } else {
+      bachelor_heading_leading
+    }
+  }
   if heading-above == auto {
     heading-above = if is-graduate {
       (level1-heading-above, 2 * 15.6pt - 0.7em, 2 * 15.6pt - 0.7em)
     } else {
-      (15.2pt, -3pt, -1.5pt)
+      bachelor_heading_above
     }
   }
   if heading-below == auto {
     heading-below = if is-graduate {
       (level1-heading-below, 1.5 * 15.6pt - 0.7em, 1.5 * 15.6pt - 0.7em)
     } else {
-      (14.4pt, 2pt, -1pt)
+      bachelor_heading_below
     }
   }
 
@@ -182,6 +195,7 @@
       weight: array-at(heading-weight, it.level),
       ..unpairs(heading-text-args-lists.map(pair => (pair.at(0), array-at(pair.at(1), it.level)))),
     )
+    set par(leading: array-at(heading_leading, it.level), spacing: 0pt)
 
     let needs-pagebreak = false
     if array-at(heading-pagebreak, it.level) {

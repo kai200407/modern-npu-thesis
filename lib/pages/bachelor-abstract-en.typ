@@ -45,6 +45,7 @@
     // 英文摘要标题，字号和间距使用统一配置
     #show heading.where(level: 1): it => {
       set text(size: preface-heading-size, font: fonts.黑体, weight: preface-heading-weight)
+      set par(leading: leading, spacing: 0pt)
       set block(above: 0pt, below: preface-heading-below)
       align(center, it)
     }

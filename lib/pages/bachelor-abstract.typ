@@ -51,7 +51,7 @@
     #set par(leading: leading, justify: true, spacing: spacing)
 
     // 使用统一的一级标题样式
-    #show heading.where(level: 1): it => preface-heading-style(it, fonts)
+    #show heading.where(level: 1): it => preface-heading-style(it, fonts, leading: leading)
     #v(preface-heading-above)
     #heading(level: 1, outlined: outlined, outline-title)
 
