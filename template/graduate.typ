@@ -1,10 +1,10 @@
 ﻿#import "/template.typ": algorithm, algorithm-ref, graduate-thesis-config, nwpu-thesis
 
 #let thesis-config = graduate-thesis-config(
-  doctype: "master",
-  degree: "professional",
-  anonymous: false,
-  colored-cover: true,
+  doctype: "master", // "master" | "doctor"，研究生论文类型
+  degree: "professional", // "academic" | "professional"，学位类型
+  anonymous: false, // 是否开启盲审模式
+  colored-cover: true, // 是否启用彩色封面
   title: ("基于 Typst 的", "西北工业大学学位论文"),
   title-en: "First Line \nSecond Line",
   student-id: "2023123456",
