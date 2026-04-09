@@ -48,8 +48,9 @@
       #text(font: fonts.宋体, size: label-size)[#label]
       #box(width: 0.2cm)
       #box(width: width)[
-        #align(center + horizon)[
-          #text(font: fonts.宋体, size: value-size)[#body]
+        #set par(leading: 0em, spacing: 0em)
+        #align(center)[
+          #text(font: fonts.宋体, size: value-size, bottom-edge: "descender")[#body]
         ]
         #line(length: 100%, stroke: stroke-width + black)
       ]
@@ -85,11 +86,11 @@
     #underline-field("题　　目", mask-value((("",) + info.title).join(" ")), width: title-line-width, label-size: 字号.三号, value-size: 字号.三号)
     #v(1.5cm)
     #underline-field("专业名称", info.major)
-    #v(1.1cm)
+    #v(0.8cm)
     #underline-field("学生姓名", mask-value(info.author))
-    #v(1.1cm)
+    #v(0.8cm)
     #underline-field("指导教师", mask-value(info.supervisor.at(0)))
-    #v(1.1cm)
+    #v(0.8cm)
     #underline-field("毕业时间", info.submit-date)
     #v(1fr)
   ]
