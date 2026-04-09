@@ -96,6 +96,17 @@
     }
   }
   
+  let insert-blank-page() = {
+    page(
+      margin: 0pt,
+      background: none,
+      header: none,
+      footer: none,
+    )[
+      #box(width: 1pt, height: 1pt)
+    ]
+  }
+  
   let defence-info-key(body) = {
     rect(
       inset: defence-info-inset,
@@ -366,9 +377,10 @@
   // 日期
   text(font: fonts.宋体, size: 字号.三号, datetime-year-month(info.submit-date))
   
-  // 双面打印时，稳定地补到偶数页，避免基于当前页码的自引用布局。
+  // 双面打印时，在中文标题页后显式插入一页空白页。
   if twoside {
-    pagebreak(weak: true, to: "even")
+    pagebreak(weak: true)
+    insert-blank-page()
   }
   
   
@@ -448,16 +460,17 @@
   linebreak()
   text(font: "Times New Roman", datetime-year-month-en(info.submit-date))
   
-  // 双面打印时，稳定地补到偶数页，避免基于当前页码的自引用布局。
+  // 双面打印时，在英文标题页后显式插入一页空白页。
   if twoside {
-    pagebreak(weak: true, to: "even")
+    pagebreak(weak: true)
+    insert-blank-page()
   }
   
   
   // ========================================
   // 第四页 - 评阅人和答辩委员会名单
   // ========================================
-  pagebreak(weak: true, to: if twoside { "odd" })
+  pagebreak(weak: true)
   
   set text(font: fonts.宋体, size: 字号.小四)
   
