@@ -14,5 +14,3 @@ Thumbs.db
 # Typst build outputs
 dist/
 .typst/
-thesis.pdf
-template/thesis.pdf
