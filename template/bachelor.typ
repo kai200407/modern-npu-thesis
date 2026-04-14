@@ -1,7 +1,6 @@
 ﻿#import "/template.typ": algorithm, algorithm-ref, bachelor-thesis-config, nwpu-thesis
 
 #let thesis-config = bachelor-thesis-config(
-  english-writing: false, // 是否将图表、算法等标签切换为英文
   title: ("基于 Typst 的西工大论文"),
   author: "航小天",
   major: "计算机科学与技术",
@@ -9,11 +8,11 @@
   submit-date: (year: 2026, month: 3),
   bibliography: bibliography.with("ref.bib"),
   abstract: [
-    中文摘要内容。中文摘要一般应说明研究工作目的、实验方法、结果和最终结论等，而重点是结果和结论。摘要中不用图、表、化学结构式、非公知公用的符号和术语。
+    中文摘要内容。
   ],
   keywords: ("关键词一", "关键词二", "关键词三", "关键词四"),
   abstract-en: [
-    English abstract content. The abstract should generally explain the purpose, experimental methods, results, and final conclusions of the research, with emphasis on the results and conclusions.
+    English abstract content.
   ],
   keywords-en: ("Keyword1", "Keyword2", "Keyword3", "Keyword4"),
   appendix: [
@@ -30,6 +29,8 @@
 #let thesis-body = [
 
   = 绪论
+
+  XXX
 
   == 研究背景
 
