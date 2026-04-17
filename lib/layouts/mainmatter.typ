@@ -11,6 +11,8 @@
   twoside: false,
   doctype: "bachelor",
   english-writing: false,
+  graduate-leading: 0.9em,
+  graduate-spacing: 1.0em,
   bachelor_leading: 2.4pt,
   bachelor_spacing: 0pt,
   bachelor_heading_leading: (2.4pt, 2.4pt, 2.4pt),
@@ -70,10 +72,10 @@
     }
   }
   if leading == auto {
-    leading = if is-graduate { 0.9em } else { bachelor_leading }
+    leading = if is-graduate { graduate-leading } else { bachelor_leading }
   }
   if spacing == auto {
-    spacing = if is-graduate { 1.0em } else { bachelor_spacing }
+    spacing = if is-graduate { graduate-spacing } else { bachelor_spacing }
   }
   if first-line-indent == auto {
     first-line-indent = if is-graduate {
@@ -112,7 +114,7 @@
   }
   if heading_leading == auto {
     heading_leading = if is-graduate {
-      (0.9em, 0.9em, 0.9em)
+      (graduate-leading, graduate-leading, graduate-leading)
     } else {
       bachelor_heading_leading
     }

@@ -102,6 +102,8 @@
   anonymous: false,
   english-writing: false,
   colored-cover: false,
+  graduate_leading: 0.9em,
+  graduate_spacing: 1.0em,
   fonts: (:),
   title: ("基于 Typst 的", "西北工业大学学位论文"),
   title-en: "NPU Thesis Template for Typst",
@@ -151,6 +153,8 @@
     anonymous: anonymous,
     english-writing: english-writing,
     colored-cover: colored-cover,
+    graduate_leading: graduate_leading,
+    graduate_spacing: graduate_spacing,
     fonts: fonts,
     info: (
       title: title,
@@ -190,6 +194,8 @@
   nl-cover: false, // TODO: 是否使用国家图书馆封面，默认关闭
   twoside: true, // 双面模式，会加入空白页，便于打印
   english-writing: false, // 是否使用英文论文标签
+  graduate_leading: 0.9em, // 研究生摘要与正文统一行距
+  graduate_spacing: 1.0em, // 研究生摘要与正文统一段间距
   bachelor_leading: bachelor_style_defaults.leading, // 本科论文统一行距增量
   bachelor_spacing: bachelor_style_defaults.spacing, // 本科论文统一段间距
   bachelor_heading_leading: bachelor_style_defaults.heading_leading, // 本科正文各级标题行距
@@ -268,6 +274,8 @@
     nl-cover: nl-cover,
     twoside: twoside,
     english-writing: english-writing,
+    graduate_leading: graduate_leading,
+    graduate_spacing: graduate_spacing,
     bachelor_leading: bachelor_leading,
     bachelor_spacing: bachelor_spacing,
     bachelor_heading_leading: bachelor_heading_leading,
@@ -302,6 +310,8 @@
           twoside: twoside,
           doctype: doctype,
           english-writing: english-writing,
+          graduate-leading: graduate_leading,
+          spacing: graduate_spacing,
           display-header: true,
           bachelor_leading: bachelor_leading,
           bachelor_spacing: bachelor_spacing,
@@ -316,6 +326,8 @@
           twoside: twoside,
           doctype: doctype,
           english-writing: english-writing,
+          graduate-leading: graduate_leading,
+          spacing: graduate_spacing,
           display-header: true,
           bachelor_leading: bachelor_leading,
           bachelor_spacing: bachelor_spacing,
@@ -370,6 +382,8 @@
           degree: degree,
           anonymous: anonymous,
           twoside: twoside,
+          leading: graduate_leading,
+          spacing: graduate_spacing,
           ..args,
           fonts: fonts + args.named().at("fonts", default: (:)),
           info: info + args.named().at("info", default: (:)),
@@ -399,6 +413,8 @@
           degree: degree,
           anonymous: anonymous,
           twoside: twoside,
+          leading: graduate_leading,
+          spacing: graduate_spacing,
           ..args,
           fonts: fonts + args.named().at("fonts", default: (:)),
           info: info + args.named().at("info", default: (:)),
@@ -497,6 +513,8 @@
   nl-cover: false,
   twoside: true,
   english-writing: false,
+  graduate_leading: 0.9em,
+  graduate_spacing: 1.0em,
   bachelor_leading: bachelor_style_defaults.leading,
   bachelor_spacing: bachelor_style_defaults.spacing,
   bachelor_heading_leading: bachelor_style_defaults.heading_leading,
@@ -550,6 +568,8 @@
     nl-cover: nl-cover,
     twoside: effective_twoside,
     english-writing: english-writing,
+    graduate_leading: graduate_leading,
+    graduate_spacing: graduate_spacing,
     bachelor_leading: bachelor_leading,
     bachelor_spacing: bachelor_spacing,
     bachelor_heading_leading: bachelor_heading_leading,

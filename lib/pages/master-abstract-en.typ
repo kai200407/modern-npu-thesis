@@ -2,7 +2,7 @@
 #import "../utils/header.typ": header-render
 #import "../layouts/preface.typ": (
   preface-heading-above, preface-heading-below, preface-heading-size, preface-heading-weight,
-  preface-heading-leading, preface-body-leading, preface-body-spacing, preface-body-first-line-indent,
+  preface-heading-leading, preface-body-first-line-indent,
   preface-keywords-above,
 )
 
@@ -42,7 +42,7 @@
 
 
   [
-    #set par(leading: preface-body-leading, spacing: preface-body-spacing, justify: true)
+    #set par(leading: leading, spacing: spacing, justify: true)
 
     // 英文摘要标题使用 Times New Roman，加粗，其他样式统一配置
     #show heading.where(level: 1): it => {
