@@ -1,7 +1,7 @@
 #import "../utils/style.typ": 字体, 字号
 #import "../utils/header.typ": header-render
 #import "../layouts/preface.typ": (
-  preface-heading-above, preface-heading-style, preface-body-first-line-indent,
+  preface-heading-above, preface-heading-below, preface-heading-style, preface-body-first-line-indent,
   preface-keywords-above,
 )
 
@@ -18,6 +18,9 @@
   anonymous-info-keys: ("author-en", "supervisor-en", "supervisor-ii-en"),
   leading: 1.0em,
   spacing: 1.0em,
+  title-leading: 2.4pt,
+  title-above: preface-heading-above,
+  title-below: preface-heading-below,
   funding: none,
   body,
 ) = {
@@ -45,9 +48,16 @@
 
     // 英文摘要标题复用统一标题样式，只覆盖字体与字重
     #show heading.where(level: 1): it => {
-      preface-heading-style(it, fonts, font: "Times New Roman", weight: "bold")
+      preface-heading-style(
+        it,
+        fonts,
+        font: "Times New Roman",
+        weight: "bold",
+        leading: title-leading,
+        below: title-below,
+      )
     }
-    #v(preface-heading-above)
+    #v(title-above)
     <__nwpu_master_abstract_en_heading_start__>
     #heading(level: 1, outlined: outlined, outline-title)<__nwpu_master_abstract_en_heading_end__>
 

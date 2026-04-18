@@ -10,6 +10,9 @@
   english-writing: false,
   fonts: (:),
   title: auto,
+  title-leading: auto,
+  title-above: auto,
+  title-below: auto,
   full: false,
   style: "gb-7714-2015-numeric",
   label-shift: 2.1em,
@@ -30,6 +33,15 @@
   let is-graduate = doctype == "master" or doctype == "doctor"
   if title == auto {
     title = if english-writing { "References" } else { "参考文献" }
+  }
+  if title-leading == auto {
+    title-leading = preface-heading-leading
+  }
+  if title-above == auto {
+    title-above = if is-graduate { preface-heading-above } else { 0pt }
+  }
+  if title-below == auto {
+    title-below = if is-graduate { preface-heading-below } else { 0pt }
   }
 
   pagebreak(weak: true, to: if twoside { "odd" })
@@ -228,11 +240,11 @@
     show heading.where(level: 1, numbering: none): it => preface-heading-style(
       it,
       fonts,
-      leading: preface-heading-leading,
+      leading: title-leading,
       above: 0pt,
-      below: preface-heading-below,
+      below: title-below,
     )
-    v(preface-heading-above)
+    v(title-above)
     heading(level: 1, numbering: none, outlined: true, title)
   }
   bibliography(

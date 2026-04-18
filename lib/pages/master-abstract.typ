@@ -1,6 +1,6 @@
 #import "../utils/style.typ": 字体, 字号
 #import "../utils/header.typ": header-render
-#import "../layouts/preface.typ": preface-heading-above, preface-heading-style, preface-body-first-line-indent, preface-keywords-above
+#import "../layouts/preface.typ": preface-heading-above, preface-heading-below, preface-heading-style, preface-body-first-line-indent, preface-keywords-above
 
 #let master-abstract(
   doctype: "master",
@@ -15,6 +15,9 @@
   anonymous-info-keys: ("author", "grade", "supervisor", "supervisor-ii"),
   leading: 1.0em,
   spacing: 1.0em,
+  title-leading: 2.4pt,
+  title-above: preface-heading-above,
+  title-below: preface-heading-below,
   funding: none,
   body,
 ) = {
@@ -41,8 +44,8 @@
     #set par(leading: leading, spacing: spacing, justify: true)
 
     // 使用统一的一级标题样式
-    #show heading.where(level: 1): it => preface-heading-style(it, fonts)
-    #v(preface-heading-above)
+    #show heading.where(level: 1): it => preface-heading-style(it, fonts, leading: title-leading, below: title-below)
+    #v(title-above)
     #heading(level: 1, outlined: outlined, outline-title)
 
     #[
