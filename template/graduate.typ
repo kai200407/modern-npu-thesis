@@ -1,4 +1,4 @@
-﻿#import "/template.typ": algorithm, algorithm-ref, graduate-thesis-config, nwpu-thesis
+﻿#import "/template.typ": algorithm, algorithm-ref, equation-note, graduate-thesis-config, nwpu-thesis
 
 #let thesis-config = graduate-thesis-config(
   doctype: "master", // "master" | "doctor"，研究生论文类型
@@ -189,6 +189,11 @@
   而后续数学公式仍然能正常编号。
 
   $ F_n = floor(1 / sqrt(5) phi.alt^n) $
+
+  如果需要在公式下方给出变量含义说明，可以使用统一的辅助宏：
+
+  $ E = m c^2 $
+  #equation-note[$E$ 为能量，$m$ 为质量，$c$ 为光速。]
 
   == 算法示例
 

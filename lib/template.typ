@@ -1,5 +1,6 @@
 #import "layouts/doc.typ": doc
 #import "utils/algorithm.typ": algorithm, algorithm-ref, reset-algorithm-counter, with-english-writing
+#import "utils/equation-note.typ": equation-note
 #import "layouts/preface.typ": preface
 #import "layouts/mainmatter.typ": mainmatter
 #import "layouts/appendix.typ": appendix
