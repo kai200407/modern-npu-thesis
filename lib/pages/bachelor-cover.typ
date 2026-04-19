@@ -69,7 +69,7 @@
     v(80pt)
   } else {
     v(2.3cm)
-    image("../../template/images/nwpulogo.png", width: 10cm)
+    image("../../template/figures/nwpulogo.png", width: 10cm)
     v(1.3cm)
   }
 

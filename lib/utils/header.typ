@@ -58,7 +58,7 @@
   [
     #set par(leading: 0pt, spacing: 0pt)
     #align(center)[
-      #image("../../template/images/nwpuheader.png", width: 7cm)
+      #image("../../template/figures/nwpuheader.png", width: 7cm)
     ]
     #v(bachelor_headsep)
     #line(length: 100%, stroke: bachelor_headrule + black)

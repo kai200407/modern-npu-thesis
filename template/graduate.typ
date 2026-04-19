@@ -31,7 +31,6 @@
     ),
     secretary: (name: "郑某某", title: "讲师", unit: "西北工业大学"),
   ),
-  bibliography: bibliography.with("ref.bib"),
   abstract: [
     中文摘要一般应说明研究工作目的、实验方法、结果和最终结论等，而重点是结果和结论。摘要中不用图、表、化学结构式、非公知公用的符号和术语。
 
@@ -58,7 +57,7 @@
   academic-achievements: [
     不同类型的成果列表书写格式与参考文献相同。对于学术论文，如已发表的被EI或SCI收录，应标明收录号；SCI论文一般应标注发表当年的影响因子；对已录用但尚未发表的学术论文，请注明是否EI或SCI刊源。
   ],
-  scan-declaration: image("images/声明.pdf"),
+  scan-declaration: image("figures/声明.pdf"),
 )
 
 #let thesis-body = [
@@ -126,7 +125,7 @@
   ) <composite-performance>
 
   #figure(
-    image("images/博士论文封面.jpg", width: 45%),
+    image("figures/博士论文封面.jpg", width: 45%),
     caption: [图片测试],
   ) <test>
 
@@ -137,11 +136,11 @@
       columns: (1fr, 1fr),
       gutter: 1em,
       align(center)[
-        #image("images/博士论文封面.jpg", width: 60%)
+        #image("figures/博士论文封面.jpg", width: 60%)
         #subfigure-caption[(a) 第一个子图说明]
       ],
       align(center)[
-        #image("images/博士论文封底.jpg", width: 60%)
+        #image("figures/博士论文封底.jpg", width: 60%)
         #subfigure-caption[(b) 第二个子图说明]
       ],
     ),
@@ -154,20 +153,20 @@
       rows: (200pt, 200pt),
       gutter: 1em,
       align(center)[
-        #image("images/专硕论文封面.jpg", width: 50%)
+        #image("figures/专硕论文封面.jpg", width: 50%)
         #subfigure-caption[(a) 第一个子图说明]
       ],
       align(center)[
-        #image("images/专硕论文封底.jpg", width: 50%)
+        #image("figures/专硕论文封底.jpg", width: 50%)
         #subfigure-caption[(b) 第二个子图说明]
       ],
 
       align(center)[
-        #image("images/学硕论文封面.jpg", width: 50%)
+        #image("figures/学硕论文封面.jpg", width: 50%)
         #subfigure-caption[(c) 第三个子图说明]
       ],
       align(center)[
-        #image("images/学硕论文封底.jpg", width: 50%)
+        #image("figures/学硕论文封底.jpg", width: 50%)
         #subfigure-caption[(d) 第四个子图说明]
       ],
     ),
@@ -222,7 +221,7 @@
 
   == 参考文献
 
-  可以像这样引用参考文献@周融2003对新形势下毕业设计管理工作的思考与实践，引用两个以上的文献时，文献之间用逗号分隔，如@图书馆 @李大伦1998，引用三个以上的文献 @河北绿洲2001 @李炳穆2000 @丁文祥2000。
+  可以像这样引用参考文献@周融2003，引用两个的文献 @图书馆 @李大伦1998，引用三个以上的文献 @伍蠡甫 @张筑生 @冯西桥1998 @姜锡洲 @gbt16159-1996 @科学技术期刊管理办法 @中国大学学报论文文摘。
 
   = 研究方法
 

@@ -6,7 +6,6 @@
   major: "计算机科学与技术",
   supervisor: ("张三", "教授"),
   submit-date: (year: 2026, month: 3),
-  bibliography: bibliography.with("ref.bib"),
   abstract: [
     中文摘要内容。
   ],
@@ -91,7 +90,7 @@
   ) <composite-performance>
 
   #figure(
-    image("images/博士论文封面.jpg", width: 45%),
+    image("figures/博士论文封面.jpg", width: 45%),
     caption: [图片测试],
   ) <test>
 
@@ -102,11 +101,11 @@
       columns: (1fr, 1fr),
       gutter: 1em,
       align(center)[
-        #image("images/博士论文封面.jpg", width: 60%)
+        #image("figures/博士论文封面.jpg", width: 60%)
         #subfigure-caption[(a) 第一个子图说明]
       ],
       align(center)[
-        #image("images/博士论文封底.jpg", width: 60%)
+        #image("figures/博士论文封底.jpg", width: 60%)
         #subfigure-caption[(b) 第二个子图说明]
       ],
     ),
@@ -156,7 +155,7 @@
 
   == 参考文献
 
-  可以像这样引用参考文献@蒋有绪1998，引用两个以上的文献时，文献之间用逗号分隔，如@WHO1970 @张志祥1998，引用三个以上的文献 @河北绿洲2001 @李炳穆2000 @丁文祥2000。
+  可以像这样引用参考文献@周融2003，引用两个的文献@伍蠡甫 @图书馆，引用三个以上的文献 @张筑生 @gbt16159-1996 @冯西桥1998 @姜锡洲 @中国大学学报论文文摘。
 ]
 
 #show: nwpu-thesis.with(..thesis-config)

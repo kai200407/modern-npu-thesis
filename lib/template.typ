@@ -93,6 +93,15 @@
   heading_below: (24pt, 12pt, 10pt),
 )
 
+#let default-bibliography(doctype) = {
+  let source = if doctype == "bachelor" {
+    "../template/bib/bachelor.bib"
+  } else {
+    "../template/bib/graduate.bib"
+  }
+  bibliography.with(source)
+}
+
 #let bachelor-thesis-config(
   degree: "academic",
   anonymous: false,
@@ -103,7 +112,6 @@
   major: "某专业",
   supervisor: ("李四", "教授"),
   submit-date: (year: 2026, month: 6),
-  bibliography: none,
   abstract: none,
   keywords: (),
   abstract-en: none,
@@ -134,7 +142,6 @@
       supervisor: supervisor,
       submit-date: submit-date,
     ) + info_extra,
-    bibliography: bibliography,
     abstract: abstract,
     keywords: keywords,
     abstract-en: abstract-en,
@@ -197,7 +204,6 @@
     ),
     secretary: (name: "", title: "", unit: ""),
   ),
-  bibliography: none,
   abstract: none,
   keywords: (),
   funding: none,
@@ -248,7 +254,6 @@
       reviewers: reviewers,
       defence-committee: defence-committee,
     ) + info_extra,
-    bibliography: bibliography,
     abstract: abstract,
     keywords: keywords,
     funding: funding,
@@ -290,10 +295,14 @@
   bachelor_heading_below: bachelor_style_defaults.heading_below, // 本科正文各级标题段后距
   colored-cover: false, // 是否开启彩色封面封底
   anonymous: false, // 盲审模式
-  bibliography: none, // 原来的参考文献函数
+  bibliography: none, // 传入 none 时按文档类型自动选择默认参考文献
   fonts: (:), // 字体，应传入「宋体」、「黑体」、「楷体」、「仿宋」、「等宽」
   info: (:),
 ) = {
+  if bibliography == none {
+    bibliography = default-bibliography(doctype)
+  }
+
   // 默认参数
   fonts = 字体 + fonts
   info = (
@@ -689,6 +698,10 @@
   // 文档内容
   body,
 ) = {
+  if bibliography == none {
+    bibliography = default-bibliography(doctype)
+  }
+
   // 命令行参数覆盖
   let anonymous = _parse-bool(sys.inputs.at("anonymous", default: none), anonymous)
   let twoside = _parse-bool(sys.inputs.at("twoside", default: none), twoside)
@@ -861,11 +874,11 @@
 
   if colored-cover and (doctype == "master" or doctype == "doctor") {
     let bg = if doctype == "doctor" {
-      "../template/images/博士论文封底.jpg"
+      "../template/figures/博士论文封底.jpg"
     } else if degree == "professional" {
-      "../template/images/专硕论文封底.jpg"
+      "../template/figures/专硕论文封底.jpg"
     } else {
-      "../template/images/学硕论文封底.jpg"
+      "../template/figures/学硕论文封底.jpg"
     }
     let back-margin = (top: 2.54cm, bottom: 2.54cm, left: 2.5cm, right: 2.5cm)
     let parity-blank-page = page(
