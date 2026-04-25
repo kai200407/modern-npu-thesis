@@ -11,7 +11,8 @@
 #import "pages/master-abstract.typ": master-abstract
 #import "pages/bachelor-abstract-en.typ": bachelor-abstract-en
 #import "pages/master-abstract-en.typ": master-abstract-en
-#import "pages/outline-page.typ": outline-page
+#import "pages/bachelor-outline.typ": bachelor-outline
+#import "pages/graduate-outline.typ": graduate-outline
 #import "pages/acknowledgement.typ": acknowledgement
 #import "pages/design-summary.typ": design-summary as design-summary-page
 #import "pages/academic-achievements.typ": academic-achievements
@@ -104,6 +105,8 @@
   bachelor_heading_leading: heading-format.bachelor.leading,
   bachelor_heading_above: heading-format.bachelor.above,
   bachelor_heading_below: heading-format.bachelor.below,
+  bachelor_body_font: auto,
+  bachelor_body_size: auto,
   info_extra: (:),
   config_extra: (:),
 ) = {
@@ -136,6 +139,8 @@
       bachelor_heading_leading: bachelor_heading_leading,
       bachelor_heading_above: bachelor_heading_above,
       bachelor_heading_below: bachelor_heading_below,
+      bachelor_body_font: bachelor_body_font,
+      bachelor_body_size: bachelor_body_size,
     )
       + config_extra
   )
@@ -159,6 +164,8 @@
   graduate_heading_leading: heading-format.graduate.leading,
   graduate_heading_above: heading-format.graduate.above,
   graduate_heading_below: heading-format.graduate.below,
+  graduate_body_font: auto,
+  graduate_body_size: auto,
   fonts: (:),
   title: ("基于 Typst 的", "西北工业大学学位论文"),
   title-en: "NPU Thesis Template for Typst",
@@ -221,6 +228,8 @@
       graduate_heading_leading: graduate_heading_leading,
       graduate_heading_above: graduate_heading_above,
       graduate_heading_below: graduate_heading_below,
+      graduate_body_font: graduate_body_font,
+      graduate_body_size: graduate_body_size,
       fonts: fonts,
       info: (
         title: title,
@@ -260,7 +269,6 @@
 #let documentclass(
   doctype: "bachelor", // "bachelor" | "master" | "doctor"，文档类型，默认为本科生 bachelor
   degree: "academic", // "academic" | "professional"，学位类型，默认为学术型 academic
-  nl-cover: false, // TODO: 是否使用国家图书馆封面，默认关闭
   twoside: true, // 双面模式，会加入空白页，便于打印
   english-writing: false, // 是否使用英文论文标签
   graduate_leading: body-format.graduate.leading, // 研究生摘要与正文统一行距
@@ -275,11 +283,15 @@
   graduate_heading_leading: heading-format.graduate.leading, // 研究生正文各级标题行距
   graduate_heading_above: heading-format.graduate.above, // 研究生正文各级标题段前距
   graduate_heading_below: heading-format.graduate.below, // 研究生正文各级标题段后距
+  graduate_body_font: auto, // 研究生正文字体，默认宋体
+  graduate_body_size: auto, // 研究生正文字号，默认小四
   bachelor_leading: body-format.bachelor.leading, // 本科论文统一行距增量
   bachelor_spacing: body-format.bachelor.spacing, // 本科论文统一段间距
   bachelor_heading_leading: heading-format.bachelor.leading, // 本科正文各级标题行距
   bachelor_heading_above: heading-format.bachelor.above, // 本科正文各级标题段前距
   bachelor_heading_below: heading-format.bachelor.below, // 本科正文各级标题段后距
+  bachelor_body_font: auto, // 本科正文字体，默认宋体
+  bachelor_body_size: auto, // 本科正文字号，默认小四
   colored-cover: false, // 是否开启彩色封面封底
   anonymous: false, // 盲审模式
   bibliography: none, // 传入 none 时按文档类型自动选择默认参考文献
@@ -292,6 +304,18 @@
 
   // 默认参数
   fonts = 字体 + fonts
+  if bachelor_body_font == auto {
+    bachelor_body_font = fonts.宋体
+  }
+  if bachelor_body_size == auto {
+    bachelor_body_size = 字号.小四
+  }
+  if graduate_body_font == auto {
+    graduate_body_font = fonts.宋体
+  }
+  if graduate_body_size == auto {
+    graduate_body_size = 字号.小四
+  }
   info = (
     (
       title: ("基于 Typst 的", "西北工业大学学位论文"),
@@ -308,7 +332,6 @@
       field-en: "XX Field",
       supervisor: ("李四", "教授"),
       supervisor-en: "Li Si",
-      supervisor-ii: (),
       supervisor-ii-en: "",
       submit-date: datetime.today(),
       // 以下为研究生项
@@ -354,7 +377,6 @@
     // 将传入参数再导出
     doctype: doctype,
     degree: degree,
-    nl-cover: nl-cover,
     twoside: twoside,
     english-writing: english-writing,
     graduate_leading: graduate_leading,
@@ -369,11 +391,15 @@
     graduate_heading_leading: graduate_heading_leading,
     graduate_heading_above: graduate_heading_above,
     graduate_heading_below: graduate_heading_below,
+    graduate_body_font: graduate_body_font,
+    graduate_body_size: graduate_body_size,
     bachelor_leading: bachelor_leading,
     bachelor_spacing: bachelor_spacing,
     bachelor_heading_leading: bachelor_heading_leading,
     bachelor_heading_above: bachelor_heading_above,
     bachelor_heading_below: bachelor_heading_below,
+    bachelor_body_font: bachelor_body_font,
+    bachelor_body_size: bachelor_body_size,
     anonymous: anonymous,
     fonts: fonts,
     info: info,
@@ -425,6 +451,8 @@
           bachelor_heading_leading: bachelor_heading_leading,
           bachelor_heading_above: bachelor_heading_above,
           bachelor_heading_below: bachelor_heading_below,
+          body-font: graduate_body_font,
+          body-size: graduate_body_size,
           ..args,
           fonts: fonts + args.named().at("fonts", default: (:)),
         )
@@ -449,6 +477,8 @@
           bachelor_heading_leading: bachelor_heading_leading,
           bachelor_heading_above: bachelor_heading_above,
           bachelor_heading_below: bachelor_heading_below,
+          body-font: bachelor_body_font,
+          body-size: bachelor_body_size,
           ..args,
           fonts: fonts + args.named().at("fonts", default: (:)),
         )
@@ -459,6 +489,10 @@
         twoside: twoside,
         doctype: doctype,
         english-writing: english-writing,
+        body-font: if doctype == "bachelor" { bachelor_body_font } else { graduate_body_font },
+        body-size: if doctype == "bachelor" { bachelor_body_size } else { graduate_body_size },
+        leading: if doctype == "bachelor" { bachelor_leading } else { graduate_leading },
+        spacing: if doctype == "bachelor" { bachelor_spacing } else { graduate_spacing },
         ..args,
       )
     },
@@ -469,7 +503,6 @@
           doctype: doctype,
           degree: degree,
           colored-cover: colored-cover,
-          nl-cover: nl-cover,
           anonymous: anonymous,
           twoside: twoside,
           ..args,
@@ -496,6 +529,8 @@
           twoside: twoside,
           leading: graduate_leading,
           spacing: graduate_spacing,
+          body-font: graduate_body_font,
+          body-size: graduate_body_size,
           title-leading: bachelor-first-level-value(graduate_heading_leading),
           title-above: bachelor-first-level-value(graduate_heading_above),
           title-below: bachelor-first-level-value(graduate_heading_below),
@@ -510,6 +545,8 @@
           twoside: twoside,
           leading: bachelor_leading,
           spacing: bachelor_spacing,
+          body-font: bachelor_body_font,
+          body-size: bachelor_body_size,
           title-leading: bachelor-first-level-value(bachelor_heading_leading),
           title-above: bachelor-first-level-value(bachelor_heading_above),
           title-below: bachelor-first-level-value(bachelor_heading_below),
@@ -554,24 +591,33 @@
     },
     // 目录页
     outline-page: (..args) => {
-      outline-page(
-        twoside: twoside,
-        doctype: doctype,
-        english-writing: english-writing,
-        leading: if doctype == "bachelor" { bachelor_leading } else { auto },
-        spacing: if doctype == "bachelor" { bachelor_spacing } else { 0pt },
-        title-leading: if doctype == "bachelor" { bachelor-first-level-value(bachelor_heading_leading) } else {
-          bachelor-first-level-value(graduate_heading_leading)
-        },
-        title-above: if doctype == "bachelor" { bachelor-first-level-value(bachelor_heading_above) } else {
-          bachelor-first-level-value(graduate_heading_above)
-        },
-        title-below: if doctype == "bachelor" { bachelor-first-level-value(bachelor_heading_below) } else {
-          bachelor-first-level-value(graduate_heading_below)
-        },
-        ..args,
-        fonts: fonts + args.named().at("fonts", default: (:)),
-      )
+      if doctype == "bachelor" {
+        bachelor-outline(
+          twoside: twoside,
+          english-writing: english-writing,
+          body-font: bachelor_body_font,
+          body-size: bachelor_body_size,
+          leading: bachelor_leading,
+          spacing: bachelor_spacing,
+          title-leading: bachelor-first-level-value(bachelor_heading_leading),
+          title-above: bachelor-first-level-value(bachelor_heading_above),
+          title-below: bachelor-first-level-value(bachelor_heading_below),
+          ..args,
+          fonts: fonts + args.named().at("fonts", default: (:)),
+        )
+      } else {
+        graduate-outline(
+          twoside: twoside,
+          english-writing: english-writing,
+          body-font: graduate_body_font,
+          body-size: graduate_body_size,
+          title-leading: bachelor-first-level-value(graduate_heading_leading),
+          title-above: bachelor-first-level-value(graduate_heading_above),
+          title-below: bachelor-first-level-value(graduate_heading_below),
+          ..args,
+          fonts: fonts + args.named().at("fonts", default: (:)),
+        )
+      }
     },
     // 参考文献页
     bilingual-bibliography: (..args) => {
@@ -579,8 +625,10 @@
         doctype: doctype,
         twoside: twoside,
         english-writing: english-writing,
-        leading: if doctype == "bachelor" { auto } else { graduate_leading },
-        spacing: if doctype == "bachelor" { auto } else { graduate_spacing },
+        body-font: if doctype == "bachelor" { bachelor_body_font } else { graduate_body_font },
+        body-size: if doctype == "bachelor" { bachelor_body_size } else { graduate_body_size },
+        leading: if doctype == "bachelor" { bachelor_leading } else { graduate_leading },
+        spacing: if doctype == "bachelor" { bachelor_spacing } else { graduate_spacing },
         title-leading: if doctype == "bachelor" { auto } else { bachelor-first-level-value(graduate_heading_leading) },
         title-above: if doctype == "bachelor" { auto } else { bachelor-first-level-value(graduate_heading_above) },
         title-below: if doctype == "bachelor" { auto } else { bachelor-first-level-value(graduate_heading_below) },
@@ -595,6 +643,8 @@
         twoside: twoside,
         doctype: doctype,
         english-writing: english-writing,
+        body-font: if doctype == "bachelor" { bachelor_body_font } else { graduate_body_font },
+        body-size: if doctype == "bachelor" { bachelor_body_size } else { graduate_body_size },
         leading: if doctype == "bachelor" { bachelor_leading } else { graduate_leading },
         spacing: if doctype == "bachelor" { bachelor_spacing } else { graduate_spacing },
         title-leading: if doctype == "bachelor" { bachelor-first-level-value(bachelor_heading_leading) } else {
@@ -616,6 +666,8 @@
         anonymous: anonymous,
         twoside: twoside,
         english-writing: english-writing,
+        body-font: graduate_body_font,
+        body-size: graduate_body_size,
         leading: graduate_leading,
         spacing: graduate_spacing,
         title-leading: bachelor-first-level-value(graduate_heading_leading),
@@ -639,7 +691,6 @@
 #let nwpu-thesis(
   doctype: "bachelor", // "bachelor" | "master" | "doctor"
   degree: "academic", // "academic" | "professional"
-  nl-cover: false,
   twoside: true,
   english-writing: false,
   graduate_leading: body-format.graduate.leading,
@@ -654,11 +705,15 @@
   graduate_heading_leading: heading-format.graduate.leading,
   graduate_heading_above: heading-format.graduate.above,
   graduate_heading_below: heading-format.graduate.below,
+  graduate_body_font: auto,
+  graduate_body_size: auto,
   bachelor_leading: body-format.bachelor.leading,
   bachelor_spacing: body-format.bachelor.spacing,
   bachelor_heading_leading: heading-format.bachelor.leading,
   bachelor_heading_above: heading-format.bachelor.above,
   bachelor_heading_below: heading-format.bachelor.below,
+  bachelor_body_font: auto,
+  bachelor_body_size: auto,
   colored-cover: false,
   anonymous: false,
   fonts: (:),
@@ -714,7 +769,6 @@
   let cls = documentclass(
     doctype: doctype,
     degree: degree,
-    nl-cover: nl-cover,
     twoside: effective_twoside,
     english-writing: english-writing,
     graduate_leading: graduate_leading,
@@ -729,11 +783,15 @@
     graduate_heading_leading: graduate_heading_leading,
     graduate_heading_above: graduate_heading_above,
     graduate_heading_below: graduate_heading_below,
+    graduate_body_font: graduate_body_font,
+    graduate_body_size: graduate_body_size,
     bachelor_leading: bachelor_leading,
     bachelor_spacing: bachelor_spacing,
     bachelor_heading_leading: bachelor_heading_leading,
     bachelor_heading_above: bachelor_heading_above,
     bachelor_heading_below: bachelor_heading_below,
+    bachelor_body_font: bachelor_body_font,
+    bachelor_body_size: bachelor_body_size,
     colored-cover: colored-cover,
     anonymous: anonymous,
     fonts: fonts,
@@ -751,10 +809,18 @@
   // 2. 前置部分（摘要、目录等）
   show: cls.preface
   if abstract != none {
-    (cls.abstract)(keywords: keywords, funding: funding)[#abstract]
+    if doctype == "bachelor" {
+      (cls.abstract)(keywords: keywords)[#abstract]
+    } else {
+      (cls.abstract)(keywords: keywords, funding: funding)[#abstract]
+    }
   }
   if abstract-en != none {
-    (cls.abstract-en)(keywords: keywords-en, funding: funding-en)[#abstract-en]
+    if doctype == "bachelor" {
+      (cls.abstract-en)(keywords: keywords-en)[#abstract-en]
+    } else {
+      (cls.abstract-en)(keywords: keywords-en, funding: funding-en)[#abstract-en]
+    }
   }
 
   (cls.outline-page)(depth: outline-depth)
@@ -794,6 +860,8 @@
         twoside: effective_twoside,
         english-writing: english-writing,
         fonts: fonts,
+        body-font: cls.bachelor_body_font,
+        body-size: cls.bachelor_body_size,
         leading: bachelor_leading,
         spacing: bachelor_spacing,
         title-leading: bachelor-first-level-value(bachelor_heading_leading),

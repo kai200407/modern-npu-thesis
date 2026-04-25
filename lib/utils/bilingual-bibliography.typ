@@ -237,6 +237,8 @@
   fonts: (:),
   leading: auto,
   spacing: auto,
+  body-font: auto,
+  body-size: auto,
   title: auto,
   title-leading: auto,
   title-above: auto,
@@ -244,6 +246,8 @@
   full: false,
 ) = {
   fonts = 字体 + fonts
+  if body-font == auto { body-font = fonts.宋体 }
+  if body-size == auto { body-size = 字号.小四 }
   let is-graduate = doctype == "master" or doctype == "doctor"
   if title == auto {
     title = if english-writing { "References" } else { "参考文献" }
@@ -270,7 +274,7 @@
   set par(first-line-indent: preface-body-first-line-indent)
 
   if is-graduate {
-    set text(font: fonts.宋体, size: 字号.小四)
+    set text(font: body-font, size: body-size)
     set par(leading: leading, spacing: spacing, justify: true, first-line-indent: preface-body-first-line-indent)
     show heading.where(level: 1, numbering: none): it => preface-heading-style(
       it,
@@ -281,8 +285,12 @@
     )
     v(title-above)
     heading(level: 1, numbering: none, outlined: true)[#title]
-  } else if title != none {
-    heading(level: 1, numbering: none, outlined: true)[#title]
+  } else {
+    set text(font: body-font, size: body-size)
+    set par(leading: leading, spacing: spacing, justify: true)
+    if title != none {
+      heading(level: 1, numbering: none, outlined: true)[#title]
+    }
   }
 
   gb7714-bibliography(

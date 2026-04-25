@@ -1,7 +1,8 @@
 #import "../utils/style.typ": 字体, 字号
+#import "../format.typ": body-format, heading-format
 #import "../utils/header.typ": header-render
 #import "../layouts/preface.typ": (
-  preface-heading-above, preface-heading-below, preface-heading-style, preface-body-first-line-indent,
+  preface-heading-style, preface-body-first-line-indent,
   preface-keywords-above,
 )
 
@@ -15,17 +16,26 @@
   keywords: (),
   outline-title: "Abstract",
   outlined: true,
-  anonymous-info-keys: ("author-en", "supervisor-en", "supervisor-ii-en"),
-  leading: 1.0em,
-  spacing: 1.0em,
-  title-leading: 2.4pt,
-  title-above: preface-heading-above,
-  title-below: preface-heading-below,
+  anonymous-info-keys: ("author-en", "supervisor-en"),
+  leading: auto,
+  spacing: auto,
+  body-font: auto,
+  body-size: auto,
+  title-leading: auto,
+  title-above: auto,
+  title-below: auto,
   keywords-above: preface-keywords-above,
   funding: none,
   body,
 ) = {
   fonts = 字体 + fonts
+  if body-font == auto { body-font = "Times New Roman" }
+  if body-size == auto { body-size = 字号.小四 }
+  if leading == auto { leading = body-format.graduate.leading }
+  if spacing == auto { spacing = body-format.graduate.spacing }
+  if title-leading == auto { title-leading = heading-format.graduate.leading.first() }
+  if title-above == auto { title-above = heading-format.graduate.above.first() }
+  if title-below == auto { title-below = heading-format.graduate.below.first() }
   info = (
     (
       title-en: "NPU Thesis Template for Typst",
@@ -64,13 +74,13 @@
     #metadata(none) <__nwpu_master_abstract_en_heading_end__>
 
     #[
-      #set text(font: "Times New Roman", size: 字号.小四)
+      #set text(font: body-font, size: body-size)
       #set par(first-line-indent: preface-body-first-line-indent)
       #body
     ]
 
 #v(keywords-above)
-#text(font: "Times New Roman", size: 字号.小四)[
+#text(font: body-font, size: body-size)[
   #strong[Key words]#text(font: fonts.黑体, weight: "bold")[：]#(("",) + keywords.intersperse("; ")).sum()
 ]
 

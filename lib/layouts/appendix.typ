@@ -1,5 +1,5 @@
 #import "@preview/i-figured:0.2.4"
-#import "../utils/style.typ": 字体
+#import "../utils/style.typ": 字体, 字号
 #import "../utils/custom-numbering.typ": custom-numbering
 
 // 附录布局
@@ -7,14 +7,25 @@
   twoside: false,
   doctype: "bachelor",
   english-writing: false,
+  body-font: auto,
+  body-size: auto,
+  leading: auto,
+  spacing: auto,
   fonts: (:),
   // 重置计数
   reset-counter: true,
   it,
 ) = {
   fonts = 字体 + fonts
+  if body-font == auto { body-font = fonts.宋体 }
+  if body-size == auto { body-size = 字号.小四 }
 
   pagebreak(weak: true, to: if twoside { "odd" })
+
+  set text(font: body-font, size: body-size)
+  if leading != auto {
+    set par(leading: leading, spacing: spacing)
+  }
 
   context {
     let appendix-headings = query(

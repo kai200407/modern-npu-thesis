@@ -9,6 +9,8 @@
   english-writing: false,
   leading: auto,
   spacing: auto,
+  body-font: auto,
+  body-size: auto,
   fonts: (:),
   // 其他参数
   title: auto,
@@ -19,6 +21,8 @@
   body,
 ) = {
   fonts = 字体 + fonts
+  if body-font == auto { body-font = fonts.宋体 }
+  if body-size == auto { body-size = 字号.小四 }
   if title == auto {
     title = if english-writing {
       "Academic Achievements and Research Experience"
@@ -45,7 +49,7 @@
   if not anonymous {
     pagebreak(weak: true, to: if twoside { "odd" })
     [
-      #set text(font: fonts.宋体, size: 字号.小四)
+      #set text(font: body-font, size: body-size)
       #set par(
         leading: leading,
         spacing: spacing,

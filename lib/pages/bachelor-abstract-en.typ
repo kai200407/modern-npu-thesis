@@ -1,4 +1,5 @@
 #import "../utils/style.typ": 字号, 字体
+#import "../format.typ": body-format, heading-format
 #import "../layouts/preface.typ": preface-heading-style
 
 // 西北工业大学本科生英文摘要页
@@ -10,19 +11,27 @@
   info: (:),
   // 其他参数
   keywords: (),
-  funding: none,
   outline-title: "ABSTRACT",
   outlined: false,
-  anonymous-info-keys: ("author-en", "supervisor-en", "supervisor-ii-en"),
-  leading: 2.4pt,
-  spacing: 0pt,
-  title-leading: 2.4pt,
-  title-above: 0pt,
-  title-below: 0pt,
+  anonymous-info-keys: ("author-en", "supervisor-en"),
+  leading: auto,
+  spacing: auto,
+  body-font: auto,
+  body-size: auto,
+  title-leading: auto,
+  title-above: auto,
+  title-below: auto,
   body,
 ) = {
   // 1.  默认参数
   fonts = 字体 + fonts
+  if body-font == auto { body-font = "Times New Roman" }
+  if body-size == auto { body-size = 字号.小四 }
+  if leading == auto { leading = body-format.bachelor.leading }
+  if spacing == auto { spacing = body-format.bachelor.spacing }
+  if title-leading == auto { title-leading = heading-format.bachelor.leading.first() }
+  if title-above == auto { title-above = heading-format.bachelor.above.first() }
+  if title-below == auto { title-below = heading-format.bachelor.below.first() }
   info = (
     title-en: "NPU Thesis Template for Typst",
     author-en: "Zhang San",
@@ -41,7 +50,7 @@
   [
     #pagebreak(weak: true, to: if twoside { "odd" })
 
-    #set text(font: "Times New Roman", size: 字号.小四)
+    #set text(font: body-font, size: body-size)
     #set par(leading: leading, justify: true, spacing: spacing)
 
     // 英文摘要标题，字号和间距使用统一配置
@@ -62,7 +71,7 @@
 
     #v(1em)
 
-    #text(font: "Times New Roman", size: 字号.小四)[
+    #text(font: body-font, size: body-size)[
       #text(weight: "bold")[KEY WORDS]#text(font: fonts.宋体)[：]#(("",)+ keywords.intersperse(", ")).sum()
     ]
   ]

@@ -31,6 +31,9 @@
   heading-numbering: auto,
   // 正文字体与字号参数
   text-args: auto,
+  // 本科正文字体（统一控制参数）
+  body-font: auto,
+  body-size: auto,
   // 标题字体与字号
   heading-font: auto,
   heading-size: (字号.三号, 字号.四号, 字号.小四),
@@ -120,7 +123,9 @@
     }
   }
   if text-args == auto {
-    text-args = (font: fonts.宋体, size: 字号.小四)
+    if body-font == auto { body-font = fonts.宋体 }
+    if body-size == auto { body-size = 字号.小四 }
+    text-args = (font: body-font, size: body-size)
   }
   let bachelor-figure-gap = text-args.at("size", default: 字号.小四) + leading
   // 1.1 字体与字号
