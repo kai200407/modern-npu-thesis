@@ -4,8 +4,9 @@
 )
 
 #show: nwpu-thesis.with(
-  doctype: "master", // "master" | "doctor"，研究生论文类型
-  degree: "professional", // "academic" | "professional"，学位类型
+  doctype: "graduate", // "graduate"
+  degree: "master", // "master" | "doctor"，研究生学位级别
+  track: "professional", // "academic" | "professional"，培养类型
   anonymous: false, // 是否开启盲审模式
   english-writing: false, // 是否用英文写作（国际研究生论文）
   colored-cover: true, // 是否启用彩色封面

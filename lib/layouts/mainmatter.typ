@@ -47,7 +47,7 @@
   ..args,
   it,
 ) = {
-  let is-graduate = doctype == "master" or doctype == "doctor"
+  let is-graduate = doctype == "graduate"
   let table-kinds = (table, "i-figured-table")
   let show-equation-handler = if is-graduate {
     i-figured.show-equation.with(

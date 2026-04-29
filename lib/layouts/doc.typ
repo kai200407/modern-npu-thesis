@@ -14,7 +14,7 @@
   // 1.  参数处理
   // 设置页面边距
   let page-margin = if margin == auto {
-    if doctype == "master" or doctype == "doctor" {
+    if doctype == "graduate" {
       page-format.graduate-margin
     } else {
       page-format.bachelor-margin
@@ -31,7 +31,7 @@
     paper: "a4",
     margin: page-margin,
     ..(
-      if doctype == "master" or doctype == "doctor" {
+      if doctype == "graduate" {
         (header-ascent: graduate_header_ascent)
       } else {
         bachelor-header-config

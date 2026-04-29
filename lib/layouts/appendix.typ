@@ -32,7 +32,7 @@
   })
   counter(heading).update(0)
 
-  let is-graduate = doctype == "master" or doctype == "doctor"
+  let is-graduate = doctype == "graduate"
 
   show: captab-style.with(numbering-format: "A-1", use-chapter: true)
   show: capfig-style.with(numbering-format: "A-1", use-chapter: true)

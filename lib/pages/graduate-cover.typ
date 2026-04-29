@@ -6,8 +6,8 @@
 // 研究生封面
 // 包含：外封（表格形式）、内封（简洁居中）、英文封面、评阅人名单
 #let master-cover(
-  doctype: "master",
-  degree: "academic",
+  degree: "master",
+  track: "academic",
   colored-cover: false,
   anonymous: false,
   info: (:),
@@ -42,7 +42,7 @@
 
   // 2.4 处理 degree
   if info.degree == auto {
-    if doctype == "doctor" {
+    if degree == "doctor" {
       info.degree = "工学博士"
     } else {
       info.degree = "工学硕士"
@@ -127,9 +127,9 @@
   
   let bg = none
   if colored-cover {
-    let cover-image-path = if doctype == "doctor" {
+    let cover-image-path = if degree == "doctor" {
       "../../template/figures/博士论文封面.jpg"
-    } else if degree == "professional" {
+    } else if track == "professional" {
       "../../template/figures/专硕论文封面.jpg"
     } else {
       "../../template/figures/学硕论文封面.jpg"
@@ -203,7 +203,7 @@
   v(3 * 10.5pt * 1.06)
   
   // 详细信息表格（四行两列）
-  let major-row-label = if degree == "professional" { "专 业 领 域" } else { "学 科 专 业" }
+  let major-row-label = if track == "professional" { "专 业 领 域" } else { "学 科 专 业" }
   
   align(center)[
     #set text(size: 字号.三号, weight: "bold")
@@ -249,7 +249,7 @@
 
   // 学位论文类型
   text(size: 字号.一号)[
-    #if doctype == "doctor" { "博 士 学 位 论 文" } else { "硕 士 学 位 论 文" }
+    #if degree == "doctor" { "博 士 学 位 论 文" } else { "硕 士 学 位 论 文" }
   ]
   
   v(6 * 14pt * 1.5) // 约 126pt
@@ -271,7 +271,7 @@
     )
   ]
   
-  let major-label = if degree == "professional" { "专业领域" } else { "学科专业" }
+  let major-label = if track == "professional" { "专业领域" } else { "学科专业" }
   
   // 计算作者和指导教师名字的最大长度，用于等宽显示
   let author-name = info.author
@@ -388,8 +388,8 @@
   linebreak()
   [For The Degree of]
   linebreak()
-  let degree-title = if doctype == "doctor" { "Doctor of " } else { "Master of " }
-  if doctype == "doctor" {
+  let degree-title = if degree == "doctor" { "Doctor of " } else { "Master of " }
+  if degree == "doctor" {
     text(degree-title)
     text(weight: "bold", info.major-en)
   } else {

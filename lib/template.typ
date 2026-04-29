@@ -9,7 +9,7 @@
 #import "pages/outline.typ": outline-page
 #import "pages/backmatter-page.typ": backmatter-page
 #import "@preview/gb7714-bilingual:0.2.3": init-gb7714, multicite
-#import "utils/bilingual-bibliography.typ": bilingual-bibliography
+#import "pages/references.typ": bilingual-bibliography
 #import "@preview/cap-able:0.0.2": capfig, capfig-style, capsubfig, captab, captab-style, captnote
 #import "format.typ": body-format, header-format, heading-format
 
@@ -24,8 +24,9 @@
 // 主配置函数
 #let nwpu-thesis(
   // 文档类型
-  doctype: "bachelor", // "bachelor" | "master" | "doctor"
-  degree: "academic", // "academic" | "professional"
+  doctype: "bachelor", // "bachelor" | "graduate"
+  degree: "master", // "master" | "doctor"（仅研究生）
+  track: "academic", // "academic" | "professional"（仅研究生）
   anonymous: false,
   english-writing: false,
   colored-cover: false,
@@ -81,8 +82,7 @@
     bibliography = default-bibliography(doctype)
   }
 
-  let effective_twoside = doctype != "bachelor"
-  let is-graduate = doctype == "master" or doctype == "doctor"
+  let is-graduate = doctype == "graduate"
   // 默认参数
   info = (
     (
@@ -117,8 +117,8 @@
   // 2. 封面
   if is-graduate {
     master-cover(
-      doctype: doctype,
       degree: degree,
+      track: track,
       colored-cover: colored-cover,
       anonymous: anonymous,
       info: info,
@@ -134,7 +134,7 @@
 
   // 3. mainmatter 包裹所有后续内容（前置 + 正文 + 后置）
   show: mainmatter.with(
-    twoside: effective_twoside,
+    twoside: is-graduate,
     doctype: doctype,
     english-writing: english-writing,
     heading-pagebreak: (true, false, false),
@@ -210,7 +210,7 @@
       )
     }
 
-    #if effective_twoside {
+    #if is-graduate {
       pagebreak(weak: true, to: "odd")
     }
   ]
@@ -226,7 +226,6 @@
     bilingual-bibliography(
       doctype: doctype,
       english-writing: english-writing,
-      fonts: (:),
     )
   }
 
@@ -278,7 +277,7 @@
     }
   }
 
-  if effective_twoside {
+  if is-graduate {
     pagebreak(weak: true, to: "odd")
   }
 
@@ -294,9 +293,9 @@
   }
 
   if colored-cover and is-graduate {
-    let bg = if doctype == "doctor" {
+    let bg = if degree == "doctor" {
       "../template/figures/博士论文封底.jpg"
-    } else if degree == "professional" {
+    } else if track == "professional" {
       "../template/figures/专硕论文封底.jpg"
     } else {
       "../template/figures/学硕论文封底.jpg"

@@ -1,5 +1,5 @@
 #import "@preview/gb7714-bilingual:0.2.3": gb7714-bibliography
-#import "../utils/style.typ": 字体, 字号
+#import "../utils/style.typ": 字号
 
 #let normalize-patent-owner(owner) = {
   if owner == none { return "" }
@@ -94,7 +94,7 @@
   let publisher = fields.at("publisher", default: fields.at("institution", default: ""))
   let year = str(fields.at("year", default: fields.at("date", default: "")))
   let pages = str(fields.at("pages", default: "")).replace("--", "-")
-  let is-graduate = doctype == "master" or doctype == "doctor"
+  let is-graduate = doctype == "graduate"
   let in-prefix = if lang == "zh" { "见：" } else { "In: " }
   let pub-sep = if lang == "zh" { "：" } else { ": " }
   let year-sep = if lang == "zh" { "，" } else { ", " }
@@ -230,14 +230,12 @@
 }
 
 #let bilingual-bibliography(
-  doctype: "master",
+  doctype: "graduate",
   english-writing: false,
-  fonts: (:),
   title: auto,
   full: false,
 ) = {
-  fonts = 字体 + fonts
-  let is-graduate = doctype == "master" or doctype == "doctor"
+  let is-graduate = doctype == "graduate"
   if title == auto {
     title = if english-writing { "References" } else { "参考文献" }
   }
