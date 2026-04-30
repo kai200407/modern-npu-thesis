@@ -1,7 +1,7 @@
 #import "@preview/i-figured:0.2.4"
 #import "@preview/cap-able:0.0.2": captab-style, capfig-style
 #import "../utils/style.typ": 字体, 字号
-#import "../utils/custom-numbering.typ": custom-numbering, show-equation-handler, figure-show-rule
+#import "../utils/custom-numbering.typ": show-equation-handler, figure-show-rule
 #import "../utils/custom-heading.typ": active-heading, heading-display
 #import "../utils/unpairs.typ": unpairs
 #import "../utils/chinese-number.typ": chinese-chapter-number
@@ -27,7 +27,6 @@
   heading-above: heading-format.bachelor.above,
   heading-below: heading-format.bachelor.below,
   // 页眉
-  stroke-width: 0.5pt,
   reset-footnote: true,
   graduate_headsep: header-format.graduate.headsep,
   graduate_headrule_offset: header-format.graduate.headrule-offset,
@@ -70,6 +69,7 @@
 
   // 4.  设置基本样式
   // 4.1 文本和段落样式
+  set align(left)
   set par(
     leading: leading,
     justify: justify,
@@ -110,7 +110,6 @@
   // 表格内容使用五号字体
   show table: set text(size: 字号.五号)
   set table(
-    stroke: if is-graduate { none } else { 0.5pt },
     inset: (x: 0.3em, y: if is-graduate { 0.5em } else { 0.7em }),
     align: center + horizon,
   )

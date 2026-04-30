@@ -1,5 +1,5 @@
 #import "@preview/cap-able:0.0.2": captab-style, capfig-style
-#import "../utils/custom-numbering.typ": custom-numbering, show-equation-handler, figure-show-rule
+#import "../utils/custom-numbering.typ": show-equation-handler, figure-show-rule
 
 // 附录布局
 #let appendix(
@@ -16,15 +16,18 @@
     "附录"
   }
 
-  set heading(numbering: custom-numbering.with(
-    first-level: if doctype == "bachelor" {
-      n => [#appendix-label]
-    } else {
-      n => [#appendix-label#numbering("A", n)]
-    },
-    depth: 4,
-    "A.1 ",
-  ))
+  set heading(numbering: (..nums) => {
+    let nums = nums.pos()
+    if nums.len() == 1 {
+      if doctype == "bachelor" {
+        [#appendix-label]
+      } else {
+        [#appendix-label#numbering("A", nums.at(0))]
+      }
+    } else if nums.len() <= 3 {
+      numbering("A.1", ..nums)
+    }
+  })
   counter(heading).update(0)
 
   let is-graduate = doctype == "graduate"

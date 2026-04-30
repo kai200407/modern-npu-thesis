@@ -1,6 +1,6 @@
 #import "../utils/style.typ": 字号, 字体
 
-// 西北工业大学摘要页
+// 摘要页
 #let abstract(
   keywords: (),
   keyword-label: "关键词",

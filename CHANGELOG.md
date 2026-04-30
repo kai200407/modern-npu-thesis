@@ -2,6 +2,9 @@
 
 格式/使用方法变动。
 
+## 2026-04-30
+- 调整本科生封面为正确格式
+
 ## 2026-04-29
 
 - graduate.typ 和 bachelor.typ 发生变动，原本的 bachelor-thesis-config 和 graduate-thesis-config 已不再继续使用；原本的 doctype、degree 两个字段变为 doctype、degree、track 三个字段，含义也有所变化；研究生附录部分的使用方法也有所改变。

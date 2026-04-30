@@ -12,7 +12,6 @@
 #import "pages/references.typ": bilingual-bibliography
 #import "@preview/cap-able:0.0.2": capfig, capfig-style, capsubfig, captab, captab-style, captnote
 #import "format.typ": body-format, header-format, heading-format
-#import "utils/custom-numbering.typ": custom-numbering
 #import "utils/chinese-number.typ": chinese-chapter-number
 
 #let default-bibliography(doctype) = {
@@ -106,7 +105,7 @@
       },
       secret-level: secret-level,
       school-code: school-code,
-      degree: auto,
+      degree: if degree == "doctor" { "工学博士" } else { "工学硕士" },
       reviewers: reviewers,
       defence-committee: defence-committee,
     )
@@ -142,17 +141,20 @@
     leading: if is-graduate { body-format.graduate.leading } else { body-format.bachelor.leading },
     spacing: if is-graduate { body-format.graduate.spacing } else { body-format.bachelor.spacing },
     first-line-indent: if is-graduate { body-format.graduate.first-line-indent } else { body-format.bachelor.first-line-indent },
-    heading-numbering: custom-numbering.with(
-      first-level: if english-writing {
-        n => [Chapter #n#h(0.7em)]
-      } else if is-graduate {
-        n => [第 #n 章#h(0.7em)]
-      } else {
-        n => [第#chinese-chapter-number(n)章　]
-      },
-      depth: 4,
-      "1.1 ",
-    ),
+    heading-numbering: (..nums) => {
+      let nums = nums.pos()
+      if nums.len() == 1 {
+        if english-writing {
+          [Chapter #nums.at(0)#h(0.7em)]
+        } else if is-graduate {
+          [第 #nums.at(0) 章#h(0.7em)]
+        } else {
+          [第#chinese-chapter-number(nums.at(0))章　]
+        }
+      } else if nums.len() <= 3 {
+        numbering("1.1", ..nums)
+      }
+    },
     heading_leading: if is-graduate { heading-format.graduate.leading } else { heading-format.bachelor.leading },
     heading-above: if is-graduate { heading-format.graduate.above } else { heading-format.bachelor.above },
     heading-below: if is-graduate { heading-format.graduate.below } else { heading-format.bachelor.below },

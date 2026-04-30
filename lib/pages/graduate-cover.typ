@@ -2,6 +2,7 @@
   datetime-display, datetime-year-month, datetime-year-month-en,
 )
 #import "../utils/style.typ": 字体, 字号
+#import "cover-utils.typ": info-row
 
 // 研究生封面
 // 包含：外封（表格形式）、内封（简洁居中）、英文封面、评阅人名单
@@ -14,8 +15,7 @@
 ) = {
   let stroke-width = 0.5pt
   let min-title-lines = 2
-  let info-inset = (x: 0pt, bottom: 0.5pt)
-  let meta-info-inset = (x: 0pt, bottom: 2pt)
+
   let defence-info-inset = (x: 0pt, bottom: 0pt)
   let defence-info-key-width = 110pt
   let defence-info-column-gutter = 2pt
@@ -40,15 +40,6 @@
   // 2.2 根据 min-title-lines 填充标题
   info.title = info.title + range(min-title-lines - info.title.len()).map(it => "　")
 
-  // 2.4 处理 degree
-  if info.degree == auto {
-    if degree == "doctor" {
-      info.degree = "工学博士"
-    } else {
-      info.degree = "工学硕士"
-    }
-  }
-  
   // 3.  内置辅助函数
   let anonymous-text(key, body) = {
     if anonymous and (key in anonymous-info-keys) {
@@ -67,7 +58,6 @@
   }
   
   let defence-info-value(key, body, no-stroke: false) = {
-    set align(center)
     rect(
       width: 100%,
       inset: defence-info-inset,
@@ -137,9 +127,6 @@
     bg = image(cover-image-path, width: 100%, height: 100%)
   }
   set page(background: bg)
-  
-  // 设置外封页默认字体
-  set text(size: 字号.五号)
   
   // 右上角元信息表格（学校代码、分类号、密级、学号）
   align(right)[
@@ -212,21 +199,10 @@
       rows: (1cm, 1cm, 1cm, 1cm),
       stroke: none,
       inset: (x: 0pt, y: 4pt),
-      // 第一行：学科专业
-      table.cell(align: center + bottom, [#major-row-label]),
-      table.cell(align: center + horizon, stroke: (bottom: stroke-width), [#info.major]),
-      // 第二行：指导教师
-      table.cell(align: center + bottom, [指 导 教 师]),
-      table.cell(align: center + horizon, stroke: (bottom: stroke-width), [#anonymous-text(
-        "supervisor",
-        info.supervisor.intersperse(" ").sum(),
-      )]),
-      // 第三行：培养单位
-      table.cell(align: center + bottom, [培 养 单 位]),
-      table.cell(align: center + horizon, stroke: (bottom: stroke-width), [#info.department]),
-      // 第四行：申请日期
-      table.cell(align: center + bottom, [申 请 日 期]),
-      table.cell(align: center + horizon, stroke: (bottom: stroke-width), [#datetime-year-month(info.submit-date)]),
+      ..info-row(major-row-label, info.major),
+      ..info-row([指 导 教 师], anonymous-text("supervisor", info.supervisor.intersperse(" ").sum())),
+      ..info-row([培 养 单 位], info.department),
+      ..info-row([申 请 日 期], datetime-year-month(info.submit-date)),
     )
   ]
   
@@ -235,17 +211,13 @@
   // ========================================
   set page(background: none)
   pagebreak(weak: true, to: "odd")
-  
-  set align(center)
-  
+
   v(6 * 10.5pt * 1.4) // 约 15pt
   
   // 校名
   text(size: 字号.三号)[
     西 北 工 业 大 学
   ]
-
-  v(0mm)
 
   // 学位论文类型
   text(size: 字号.一号)[
@@ -301,21 +273,9 @@
         rows: 1.2cm,
         stroke: none,
         inset: (x: 0pt, y: 4pt),
-        // 第一行：学科专业
-        table.cell(align: center + bottom, [#major-label:]),
-        table.cell(align: center + bottom, stroke: (bottom: stroke-width), [#info.major]),
-        // 第二行：作者
-        table.cell(align: center + bottom, [作　　者:]),
-        table.cell(align: center + bottom, stroke: (bottom: stroke-width), [#anonymous-text(
-          "author",
-          author-display-name,
-        )]),
-        // 第三行：指导教师
-        table.cell(align: center + bottom, [指导教师:]),
-        table.cell(align: center + bottom, stroke: (bottom: stroke-width), [#anonymous-text(
-          "supervisor",
-          supervisor-display-name,
-        )]),
+        ..info-row([#major-label:], info.major),
+        ..info-row([作　　者:], anonymous-text("author", author-display-name)),
+        ..info-row([指导教师:], anonymous-text("supervisor", supervisor-display-name)),
       )
     ]
   }
