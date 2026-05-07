@@ -11,7 +11,7 @@
 #import "pages/backmatter-page.typ": backmatter-page
 #import "@preview/gb7714-bilingual:0.2.3": init-gb7714, multicite
 #import "pages/references.typ": bilingual-bibliography
-#import "@preview/cap-able:0.0.2": capfig, capfig-style, capsubfig, captab, captab-style, captnote
+#import "@preview/cap-able:0.1.0": capfig, capfig-style, capsubfig, captab, captab-style, captnote
 #import "format.typ": body-format, heading-format
 #import "utils/chinese-number.typ": chinese-chapter-number
 #import "utils/cover-utils.typ": blind-review
@@ -169,7 +169,7 @@
           keywords: keywords,
           keyword-label: "关键词",
           keyword-sep: "，",
-          keyword-indent: 0pt,
+          keyword-indent: false,
           outline-title: "摘 要",
           outlined: false,
           funding: none,
@@ -184,6 +184,7 @@
           keyword-label: "Key words",
           keyword-weight: "bold",
           keyword-sep: "; ",
+          keyword-indent: false,
           outline-title: "ABSTRACT",
           title: [*Abstract*],
         )[#abstract-en]
@@ -193,7 +194,7 @@
           keyword-label: "KEY WORDS",
           keyword-weight: "bold",
           keyword-sep: ", ",
-          keyword-indent: 0pt,
+          keyword-indent: false,
           outline-title: "ABSTRACT",
           outlined: false,
           funding: none,

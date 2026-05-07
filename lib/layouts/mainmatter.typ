@@ -1,4 +1,4 @@
-#import "@preview/cap-able:0.0.2": cap-style, capfig-style, captab-style
+#import "@preview/cap-able:0.1.0": cap-style, capfig-style, captab-style, set-table-width
 #import "@preview/algorithmic:1.0.7": style-algorithm
 #import "../utils/style.typ": 字体, 字号
 #import "../utils/custom-numbering.typ": show-equation-handler
@@ -29,14 +29,12 @@
     ),
   )
 
-  // 重置页码为阿拉伯数字从1开始（由调用方在正文开始位置处理 pagebreak 和 counter reset）
   set page(
     footer: page-footer("1"),
     header-ascent: 18%,
   )
 
-  // 4.  设置基本样式
-  // 4.1 文本和段落样式
+  // 文本和段落样式
   set align(left)
   set par(
     leading: leading,
@@ -44,17 +42,13 @@
     first-line-indent: (amount: 2em, all: true),
     spacing: spacing,
   )
-  // 4.4 设置 equation 的编号和假段落首行缩进
+
   set math.equation(supplement: if english-writing { [Equation] } else { [式] })
   show math.equation.where(block: true): show-equation-handler(graduate)
-  // 4.5 表格样式
-  show table: set par(justify: false)
-  set table(align: center + horizon)
 
-  // 5.  处理标题
-  // 5.1 设置标题的 Numbering
+
+  // 处理标题
   set heading(numbering: heading-numbering)
-  // 5.2 设置字体、字号、换页及段后段后间距
   show heading: it => {
     if it.level == 1 {
       counter(figure.where(kind: "algorithm")).update(0)
@@ -83,7 +77,7 @@
     }
   }
 
-  // 6.  处理页眉
+  // 处理页眉
   // hydra 的页眉显示回调：显示编号 + 剥离加粗的标题体
   let hydra-display(ctx, it) = {
     if it.has("numbering") and it.numbering != none {
@@ -116,14 +110,21 @@
     pre-supplement-number-spacing: if english-writing { 0.3em } else { 0em },
   )
 
+  // 表格样式
+  show table: set par(justify: false)
+  set table(stroke: 0.5pt + black, align: center + horizon)
+
+  if graduate { set-table-width(percentage: 100) }
+
   // 表格独有配置
   show: captab-style.with(
+    three-line-table: if graduate { true } else { false },
     supplement: if english-writing { "Table" } else { "表" },
-    body-size: 字号.五号,
-    cell-inset: (x: 0.3em, y: if graduate { 0.55em } else { 0.7em }),
+    body-size: caption-format.size,
+    cell-inset: (x: 1em, y: if graduate { 0.55em } else { 0.7em }),
     middle-rule: (paint: black, thickness: 1pt),
+    caption-text: if graduate {(font: 字体.宋体)} else {(font: 字体.黑体)},
   )
-
   // 图片独有配置
   show: capfig-style.with(
     supplement: if english-writing { "Figure" } else { "图" },

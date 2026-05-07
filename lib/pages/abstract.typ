@@ -8,7 +8,7 @@
   keyword-label: "关键词",
   keyword-weight: "regular",
   keyword-sep: "；",
-  keyword-indent: 2em,
+  keyword-indent: true,
   outline-title: "摘　要",
   title: none,
   outlined: true,
@@ -24,17 +24,17 @@
   [
     #set par(first-line-indent: 0pt)
     #v(1em)
+    #let indent = if keyword-indent { 2em } else { 0pt }
     #if keyword-weight == "bold" [
       #text(font: 字体.黑体, weight: "bold")[#keyword-label：]
     ] else [
-      #h(keyword-indent)#text(font: 字体.黑体)[#keyword-label]：
+      #h(indent)#text(font: 字体.黑体)[#keyword-label]：
     ]
     #(("",) + keywords.intersperse(keyword-sep)).sum()
-  ]
 
-  if funding != none [
-    #v(1fr)
-    #set par(leading: 1.4em)
-    #text(size: 字号.五号)[#funding]
+    #if funding != none [
+      #v(1fr)
+      #text(size: 字号.五号)[#h(indent)#funding]
+    ]
   ]
 }

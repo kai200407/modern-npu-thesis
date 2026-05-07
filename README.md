@@ -14,7 +14,6 @@
 > **本模板现存问题**：
 >
 > - 参考文献：本模板参考文献格式依赖 `gb7714-bilingual` 包，但该包仍有一些问题会影响文献格式，相关问题已向上游作者提交 issue，待上游修复发布后模板会尽快同步调整。
-> - 表格与图片：本模板表格样式依赖 `cap-able` 包，目前存在以下限制：无法定义非三线表表格、本科生表格标题暂未应用黑体字体、图表暂不支持浮动排版。
 
 ## 优势与特性
 
@@ -48,7 +47,7 @@
 
 - [`gb7714-bilingual`](https://typst.app/universe/package/gb7714-bilingual) `0.2.3` — GB/T 7714 双语参考文献格式
 - [`algorithmic`](https://typst.app/universe/package/algorithmic) `1.0.7` — 伪代码/算法排版
-- [`cap-able`](https://typst.app/universe/package/cap-able) `0.0.2` — 图/表
+- [`cap-able`](https://typst.app/universe/package/cap-able) `0.1.0` — 图/表
 
 参考文献方面，模板针对西北工业大学本科、研究生论文格式要求做了对应调整。用户通常只需要维护 [template/bib](template/bib) 目录下的 BibTeX 文件，模板会自动处理文献引用和参考文献列表。
 

@@ -61,16 +61,7 @@ XXX
 引用@timing-tlt，以及@test。
 
 #captab(
-  caption: [三线表],
-  label: <timing-tlt>,
-)[
-  | t   | 1    | 2    | 3    |
-  | --- | ---- | ---- | ---- |
-  | y   | 0.3s | 0.4s | 0.8s |
-]
-
-#captab(
-  caption: [复杂表示例：聚合物基复合材料的性能],
+  caption: [聚合物基复合材料的性能（captab 渲染）],
   label: <composite-performance>,
   cols: (1.25fr, 1fr, 1fr, 1fr, 1fr),
   hlines: (
@@ -83,6 +74,20 @@ XXX
   | 压缩强度，MPa  | 1500    | 246  | 610       | 118  |
   | 拉伸强度，MPa  | 1500    | 40   | 1062      | 31   |
 ]
+
+表格之间的文字
+
+#captab(
+  caption: [三线表],
+  label: <timing-tlt>,
+  placement: bottom, // 表格位置，支持 top | bottom | none
+)[
+  | t   | 1    | 2    | 3    |
+  | --- | ---- | ---- | ---- |
+  | y   | 0.3s | 0.4s | 0.8s |
+]
+
+表格后的文字
 
 #capfig(
   image("figures/example.jpg", width: 45%),
