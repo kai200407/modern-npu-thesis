@@ -25,12 +25,14 @@
     #set par(first-line-indent: 0pt)
     #v(1em)
     #let indent = if keyword-indent { 2em } else { 0pt }
-    #if keyword-weight == "bold" [
-      #text(font: 字体.黑体, weight: "bold")[#keyword-label：]
-    ] else [
-      #h(indent)#text(font: 字体.黑体)[#keyword-label]：
-    ]
-    #(("",) + keywords.intersperse(keyword-sep)).sum()
+    #{
+      let label = if keyword-weight == "bold" {
+        text(font: 字体.黑体, weight: "bold")[#keyword-label：]
+      } else {
+        [#h(indent)#text(font: 字体.黑体)[#keyword-label]：]
+      }
+      label + (("",) + keywords.intersperse(keyword-sep)).sum()
+    }
 
     #if funding != none [
       #v(1fr)
