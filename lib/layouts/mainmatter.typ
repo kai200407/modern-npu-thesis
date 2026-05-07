@@ -125,7 +125,7 @@
     middle-rule: (paint: black, thickness: 1pt),
     caption-text: if graduate {(font: 字体.宋体)} else {(font: 字体.黑体)},
     caption-below: if graduate {auto} else {10pt},
-    table-below: if graduate {auto} else {20pt},
+    table-below: if graduate {leading} else {20pt},
     caption-above: if graduate {auto} else {20pt},
   )
   // 图片独有配置
@@ -134,7 +134,7 @@
     show-subcaption: true,
     show-subcaption-label: true,
     label-style: "(a)",
-    caption-above: if graduate { auto } else { 10pt },
+    caption-above: 0pt,
     figure-below: if graduate {auto} else {20pt},
     figure-above: if graduate {auto} else {20pt},
   )
