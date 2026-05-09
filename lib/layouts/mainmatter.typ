@@ -1,4 +1,4 @@
-#import "../deps.typ": cap-style, capfig-style, captab-style, set-table-width, style-algorithm, hydra
+#import "../deps.typ": cap-style, capfig-style, captab-style, style-algorithm, hydra
 #import "../utils/style.typ": 字体, 字号
 #import "../utils/custom-numbering.typ": show-equation-handler
 #import "../utils/chinese-number.typ": chinese-chapter-number

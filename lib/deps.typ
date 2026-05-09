@@ -2,7 +2,7 @@
 // 所有 @preview 包和本地拷贝的包统一在此引入，其他文件从这里 re-export
 
 // cap-able（本地拷贝，dev 分支）
-#import "cap-able/lib.typ": cap-style, capfig, capfig-style, capsubfig, captab, captab-style, captnote, set-table-width
+#import "cap-able/lib.typ": cap-style, capfig, capfig-style, capsubfig, captab, captab-style, captnote
 
 // gb7714-bilingual（本地拷贝，基于 main 分支修改版）
 #import "gb7714-bilingual/lib.typ": init-gb7714, multicite, gb7714-bibliography, format-authors

@@ -14,7 +14,7 @@
 #import "pages/outline.typ": outline-page
 #import "pages/backmatter-page.typ": backmatter-page
 #import "pages/references.typ": bilingual-bibliography
-#import "format.typ": body-format, heading-format
+#import "format.typ": body-format, heading-format, page-format
 #import "utils/chinese-number.typ": chinese-chapter-number
 #import "utils/cover-utils.typ": blind-review
 #import "utils/style.typ": 字号
@@ -110,7 +110,7 @@
   )
 
   // 1. 文稿设置
-  show: doc.with(graduate: graduate)
+  show: doc.with(margin: if graduate { page-format.graduate-margin } else { page-format.bachelor-margin })
 
   // 2. 封面
   if graduate {
