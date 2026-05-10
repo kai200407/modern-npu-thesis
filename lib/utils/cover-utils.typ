@@ -1,5 +1,11 @@
 // 封面共享工具
 
+// 分散对齐：将中文以指定宽度显示，每个字之间用均匀空隙填充
+#let distribute(width: 4em, body) = box(
+  width: width,
+  body + linebreak(justify: true),
+)
+
 #let mask-value(body, anonymous: false) = {
   if anonymous { "        " } else { body }
 }
@@ -17,38 +23,6 @@
   "研究员": "Researcher",
   "讲师": "Lecturer",
 )
-
-// 名字等宽处理：仅对中文短姓名生效，避免与英文长姓名混排时被过度拉伸
-#let pad-name(name, target-len) = {
-  if target-len > 4 {
-    name
-  } else {
-    let clusters = name.clusters()
-    let current-len = clusters.len()
-    if current-len >= target-len {
-      name
-    } else {
-      let spaces-needed = target-len - current-len
-      let result = ()
-      let gap-count = current-len - 1
-      if gap-count == 0 {
-        result.push(clusters.at(0))
-        result.push("　" * spaces-needed)
-      } else {
-        let base-spaces = calc.floor(spaces-needed / gap-count)
-        let extra-spaces = calc.rem(spaces-needed, gap-count)
-        for i in range(current-len) {
-          result.push(clusters.at(i))
-          if i < gap-count {
-            let spaces = base-spaces + (if i < extra-spaces { 1 } else { 0 })
-            result.push("　" * spaces)
-          }
-        }
-      }
-      result.join("")
-    }
-  }
-}
 
 // 显示中文日期（无前导零）
 #let datetime-display(date) = {
