@@ -77,7 +77,7 @@
 
 === 表
 
-可以使用 `captab()` 来创建表格，支持表格标题、标签、列宽、横线等功能。下面是一个简单的三线表示例@timing-tlt，以及一个复杂的三线表示例@composite-performance。
+可以使用 `captab()` 来创建表格，支持表格标题、标签、列宽、横线等功能。下面是一个简单的表示例，@timing-tlt，以及一个复杂的表示例，@composite-performance。
 
 可以使用 `placement` 参数来设置表格位置，支持 `none`、 `top`、`bottom` 和 `auto`。其中，`none` 是默认值，表示位于本来的位置；`auto` 只是 `top` 和 `bottom` 的简单增强版，会自动选择到顶部/底部。
 
