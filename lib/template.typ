@@ -114,10 +114,15 @@
       info: info,
     )
   } else {
-    bachelor-cover(
+    let cover-content = bachelor-cover(
       anonymous: anonymous,
       info: info,
     )
+    if background {
+      page(background: image("../template/duibi/bachelor_cover.pdf", width: 100%, height: 100%))[#cover-content]
+    } else {
+      cover-content
+    }
   }
 
   show: init-gb7714.with(read(bibliography), style: "numeric", version: "2025", zh-period: if not graduate { "．" }, zh-colon: if not graduate { "： " }, zh-comma: if not graduate { "，" }, en-family-titlecase: not graduate)
