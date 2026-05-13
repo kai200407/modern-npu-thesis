@@ -1,8 +1,8 @@
-#import "../deps.typ": cap-style, capfig-style, captab-style, hydra, style-algorithm, zh
+#import "../deps.typ": cap-style, capfig-style, captab-style, style-algorithm, zh
 #import "../utils/style.typ": 字体
 #import "../utils/custom-numbering.typ": show-equation-handler
 #import "../utils/chinese-number.typ": chinese-chapter-number
-#import "header.typ": bachelor-header-render, graduate-header-title, header-render, page-footer
+#import "header.typ": page-footer, page-header-footer
 #import "../format.typ": caption-format, line-spacing
 
 #let mainmatter(
@@ -26,11 +26,8 @@
     ),
   )
 
-  set page(
-    footer: page-footer("1"),
-    header-ascent: if graduate { 18% } else { 12% },
-    footer-descent: 1.2em,
-  )
+  // 页眉页脚
+  show: page-header-footer.with(graduate: graduate, degree: degree)
 
   // 文本和段落样式
   set align(left)
@@ -74,31 +71,6 @@
       block(above: leading + above-extra, below: spacing + below-extra, it)
     }
   }
-
-  // 处理页眉
-  // hydra 的页眉显示回调：显示编号 + 剥离加粗的标题体
-  let hydra-display(ctx, it) = {
-    if it.has("numbering") and it.numbering != none {
-      numbering(it.numbering, ..counter(heading).at(it.location()))
-      [ ]
-    }
-    show strong: it => it.body
-    it.body
-  }
-
-  set page(header: context {
-    let loc = here()
-    let header-content = if graduate and calc.rem(loc.page(), 2) == 0 {
-      graduate-header-title(degree)
-    } else {
-      hydra(1, display: hydra-display, use-last: true, skip-starting: false)
-    }
-    if graduate {
-      header-render(header-content)
-    } else {
-      bachelor-header-render()
-    }
-  })
 
   // cap-able 全局样式（共享参数）
   show: cap-style.with(

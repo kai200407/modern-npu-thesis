@@ -5,7 +5,7 @@
 #show: nwpu-thesis.with(
   anonymous: false, // 是否开启盲审模式
   info: (
-    title: ("基于 Typst 的西工大论文模板", "长标题支持"),
+    title: ("基于Typst的西工大论文模板", "长标题支持"),
     author: "航小天",
     major: "计算机科学与技术",
     supervisor: ("张三", "教授"),
