@@ -1,8 +1,8 @@
-#import "../deps.typ": cap-style, capfig-style, captab-style, style-algorithm, zh
-#import "../utils/style.typ": 字体
-#import "../utils/custom-numbering.typ": show-equation-handler
-#import "header.typ": page-footer, page-header-footer
-#import "../format.typ": caption-format, line-spacing
+#import "../deps.typ": zh
+#import "../utils.typ": 字体
+#import "header-footer.typ": page-footer, page-header-footer
+#import "floats.typ": setup-floats
+#import "format.typ": line-spacing
 
 #let mainmatter(
   graduate: false,
@@ -15,15 +15,8 @@
   heading-numbering: none,
   it,
 ) = {
-  // 算法三线表样式
-  show: style-algorithm.with(
-    caption-style: body => text(zh(5), strong(body)),
-    hlines: (
-      grid.hline(stroke: 1.5pt + black),
-      grid.hline(stroke: 1pt + black),
-      grid.hline(stroke: 1.5pt + black),
-    ),
-  )
+  // 图、表、公式、算法样式
+  show: setup-floats.with(graduate: graduate, english-writing: english-writing)
 
   // 页眉页脚
   show: page-header-footer.with(graduate: graduate, degree: degree)
@@ -36,10 +29,6 @@
     first-line-indent: (amount: 2em, all: true),
     spacing: spacing,
   )
-
-  set math.equation(supplement: if english-writing { [Equation] } else { [式] })
-  show math.equation.where(block: true): show-equation-handler(graduate)
-
 
   // 处理标题
   set heading(numbering: heading-numbering)
@@ -70,47 +59,6 @@
       block(above: leading + above-extra, below: spacing + below-extra, it)
     }
   }
-
-  // cap-able 全局样式（共享参数）
-  show: cap-style.with(
-    numbering-format: "1-1",
-    use-chapter: true,
-    caption-size: caption-format.size,
-    pre-supplement-number-spacing: if english-writing { 0.3em } else { 0em },
-  )
-
-  // 表格样式
-  show table: set par(justify: false)
-  set table(stroke: if graduate { 1pt } else { 0.5pt }, align: center + horizon)
-
-  // 表格独有配置
-  show: captab-style.with(
-    three-line-table: if graduate { true } else { false },
-    supplement: if english-writing { "Table" } else { "表" },
-    body-size: caption-format.size,
-    cell-inset: (x: if graduate { 0.5em } else { 0.8em }, y: if graduate { 0.55em } else { 0.7em }),
-    middle-rule: 1pt,
-    caption-text: if graduate { (font: 字体.宋体混排) } else { (font: 字体.黑体) },
-    caption-below: if graduate { auto } else { 10pt },
-    table-below: if graduate { leading } else { 20pt },
-    caption-above: if graduate { auto } else { 20pt },
-    breakable: false,
-    continued-caption: true,
-    width: if graduate {100%} else {auto},
-    number-title-spacing: if graduate { auto } else { 0.5em },
-    extra-rule: if graduate {1pt} else {0.5pt}
-  )
-  // 图片独有配置
-  show: capfig-style.with(
-    supplement: if english-writing { "Figure" } else { "图" },
-    show-subcaption: true,
-    label-style: "（a）",
-    subcaption-number-title-spacing: 0pt,
-    caption-above: 0pt,
-    figure-below: if graduate {auto} else {20pt},
-    figure-above: if graduate {auto} else {20pt},
-    subref-style: "full"
-  )
 
   it
 }

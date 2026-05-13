@@ -3,19 +3,17 @@
   While, capfig, capfig-style, capsubfig, captab, captab-style, init-gb7714, multicite, zh,
 )
 #import "layouts/doc.typ": doc
-#import "utils/algorithm.typ": algorithm, with-english-writing
-#import "utils/equation-note.typ": equation-note
+#import "layouts/floats.typ": algorithm, equation-note
 #import "layouts/mainmatter.typ": frontmatter, mainmatter
-#import "layouts/appendix.typ": appendix as appendix-layout
+#import "pages/appendix.typ": appendix as appendix-layout
 #import "pages/bachelor-cover.typ": bachelor-cover
 #import "pages/graduate-cover.typ": master-cover
 #import "pages/abstract.typ": abstract-page
 #import "pages/outline.typ": outline-page
 #import "pages/backmatter-page.typ": backmatter-page
 #import "pages/references.typ": bilingual-bibliography
-#import "format.typ": heading-format, line-spacing, page-format
-#import "utils/style.typ": chinese-chapter-number
-#import "utils/cover-utils.typ": blind-review, distribute, page-title
+#import "layouts/format.typ": heading-format, line-spacing, page-format
+#import "utils.typ": blind-review, chinese-chapter-number, distribute, page-title
 
 #let default-bibliography(graduate) = {
   if not graduate {
@@ -193,7 +191,7 @@
   counter(page).update(1)
 
   // 5. 正文
-  with-english-writing(english-writing, body)
+  body
 
   // 6. 后置部分
   if bibliography != none {

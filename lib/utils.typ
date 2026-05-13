@@ -1,4 +1,24 @@
-// 封面共享工具
+// 通用工具
+
+// ── 字体配置 ──
+
+#let 字体 = (
+  宋体混排: (
+    (name: "Times New Roman", covers: "latin-in-cjk"),
+    "SimSun",
+  ),
+  黑体: ("SimHei",),
+  黑体混排: (
+    (name: "Times New Roman", covers: "latin-in-cjk"),
+    "SimHei",
+  ),
+)
+
+#let chinese-chapter-number(n) = {
+  ("一", "二", "三", "四", "五", "六", "七", "八", "九", "十").at(n - 1)
+}
+
+// ── 封面共享工具 ──
 
 // 分散对齐：将中文以指定宽度显示，每个字之间用均匀空隙填充
 #let distribute(width: 4em, body) = box(
@@ -61,18 +81,15 @@
   "讲师": "Lecturer",
 )
 
-// 显示中文日期（无前导零）
+// 显示中文日期（无前导零），不传 day 则只输出年月
 #let datetime-display(date) = {
-  str(date.year) + " 年 " + str(date.month) + " 月 " + str(date.day) + " 日"
-}
-
-// 显示年月（无前导零）
-#let datetime-year-month(date) = {
-  str(date.year) + " 年 " + str(date.month) + " 月"
+  str(date.year) + " 年 " + str(date.month) + " 月" + if date.at("day", default: none) != none {
+    " " + str(date.day) + " 日"
+  }
 }
 
 // 显示英文年月（如 March/2026）
-#let datetime-year-month-en(date) = {
+#let datetime-display-en(date) = {
   let months = ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
   months.at(date.month - 1) + "/" + str(date.year)
 }

@@ -1,4 +1,4 @@
-#import "../utils/style.typ": 字体
+#import "../utils.typ": 字体
 #import "../deps.typ": zh
 
 // 摘要页

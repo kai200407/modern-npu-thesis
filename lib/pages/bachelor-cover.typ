@@ -1,6 +1,5 @@
-#import "../utils/style.typ": 字体
+#import "../utils.typ": 字体, datetime-display, info-row, mask-value, half-space
 #import "../deps.typ": zh
-#import "../utils/cover-utils.typ": datetime-year-month, info-row, mask-value, half-space
 
 // 本科生封面
 #let bachelor-cover(
@@ -10,7 +9,7 @@
   if type(info.title) == str {
     info.title = (info.title,)
   }
-  info.submit-date = datetime-year-month(info.submit-date)
+  info.submit-date = datetime-display(info.submit-date)
 
   v(72pt)
 

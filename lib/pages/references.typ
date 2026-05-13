@@ -1,5 +1,5 @@
 #import "../deps.typ": gb7714-bibliography, format-authors
-#import "../utils/cover-utils.typ": page-title
+#import "../utils.typ": page-title
 
 #let is-other-entry(entry) = {
   let raw-type = lower(str(entry.raw-entry-type))

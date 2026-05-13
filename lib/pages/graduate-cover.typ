@@ -1,9 +1,8 @@
-#import "../utils/style.typ": 字体
-#import "../deps.typ": zh
-#import "../utils/cover-utils.typ": (
-  datetime-display, datetime-year-month, datetime-year-month-en, distribute, half-space, info-row, major-en-map, mask-value,
+#import "../utils.typ": (
+  字体, datetime-display, datetime-display-en, distribute, half-space, info-row, major-en-map, mask-value,
   title-en-map,
 )
+#import "../deps.typ": zh
 
 // 研究生封面
 // 包含：外封、中文标题页、英文标题页、评阅人名单
@@ -102,7 +101,7 @@
         info.supervisor.intersperse(" ").sum(),
       )),
       ..info-row([#half-space("培养单位")], info.department),
-      ..info-row([#half-space("申请日期")], datetime-year-month(info.submit-date)),
+      ..info-row([#half-space("申请日期")], datetime-display(info.submit-date)),
     )
   ]
 
@@ -154,7 +153,7 @@
     }
 
     #v(35pt)
-    #text(datetime-year-month(info.submit-date))
+    #text(datetime-display(info.submit-date))
   ]
 
   pagebreak(weak: true, to: "odd")
@@ -203,7 +202,7 @@
     #v(75pt)
     #text(font: "Times New Roman")[Xi'an, P. R. China]
     #linebreak()
-    #text(datetime-year-month-en(info.submit-date))
+    #text(datetime-display-en(info.submit-date))
   ]
 
   pagebreak(weak: true, to: "odd")

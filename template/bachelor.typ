@@ -137,7 +137,7 @@ $ E = m c^2 $ <energy-mass>
 
 == 算法示例
 
-下面给出采用单独算法编号的三线表风格算法示例，见@alg:binary-search。
+下面给出采用单独算法编号的三线表风格算法示例，见@binary-search。
 
 #algorithm(
   title: [二分查找算法],
@@ -159,7 +159,7 @@ $ E = m c^2 $ <energy-mass>
     )
     Return[$-1$]
   },
-) <alg:binary-search>
+) <binary-search>
 
 = 参考文献引用示例
 

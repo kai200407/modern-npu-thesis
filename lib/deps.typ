@@ -8,7 +8,7 @@
 #import "gb7714-bilingual/lib.typ": init-gb7714, multicite, gb7714-bibliography, format-authors
 
 // algorithmic（伪代码/算法排版）
-#import "@preview/algorithmic:1.0.7": algorithm as algo-render, style-algorithm, If, While, For, Assign, Return, Procedure, Comment, Line, IfElseChain, LineBreak, ElseIf, Else, Function, Break, Terminate
+#import "@preview/algorithmic:1.0.7": algorithm-figure, style-algorithm, If, While, For, Assign, Return, Procedure, Comment, Line, IfElseChain, LineBreak, ElseIf, Else, Function, Break, Terminate
 
 // hydra（页眉标题追踪）
 #import "@preview/hydra:0.6.2": hydra

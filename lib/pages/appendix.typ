@@ -1,5 +1,5 @@
-#import "../utils/custom-numbering.typ": with-numbering-format
-#import "../utils/cover-utils.typ": page-title
+#import "../layouts/floats.typ": with-numbering-format
+#import "../utils.typ": page-title
 
 // 附录布局
 #let appendix(
