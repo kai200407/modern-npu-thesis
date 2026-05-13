@@ -34,8 +34,8 @@
 // 按级别排列，超出数组的级别默认 0pt
 #let heading-format = (
   graduate: (
-    above: (0pt, 7pt, 5pt),
-    below: (16pt, 0pt, 0pt),
+    above: (13pt, 7pt, 5pt),
+    below: (14pt, 0pt, 0pt),
   ),
   bachelor: (
     above: (20pt, 0pt, 0pt),

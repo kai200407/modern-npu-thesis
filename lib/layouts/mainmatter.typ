@@ -30,6 +30,7 @@
   set page(
     footer: page-footer("1"),
     header-ascent: if graduate { 18% } else { 12% },
+    footer-descent: 1.2em,
   )
 
   // 文本和段落样式

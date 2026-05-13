@@ -151,10 +151,15 @@
   frontmatter[
     #if abstract != none {
       if graduate {
-        abstract-page(
+        let abstract-content = abstract-page(
           keywords: keywords,
           funding: funding,
         )[#abstract]
+        if background {
+          page(background: image("../template/duibi/graduate_abstract.pdf", width: 100%, height: 100%))[#abstract-content]
+        } else {
+          abstract-content
+        }
       } else {
         let abstract-content = abstract-page(
           keywords: keywords,
