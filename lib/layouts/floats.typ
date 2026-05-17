@@ -4,26 +4,33 @@
 // 统一编号格式状态：正文 "1-1"，附录 "A-1"
 #let numbering-format = state("nwpu-numbering-format", "1-1")
 
+// 英文写作模式状态，由 setup-floats 在正文开始时写入
+#let english-writing-state = state("nwpu-english-writing", false)
+
 #let with-numbering-format(format, it) = {
   numbering-format.update(format)
   show: cap-style.with(numbering-format: format)
   it
 }
 
-#let algorithm(english-writing: false, title: none, ..body) = {
+#let algorithm(title: none, ..body) = {
   algorithm-figure(
     title,
-    supplement: if english-writing { [Algorithm] } else { [算法] },
+    supplement: context {
+      let en = english-writing-state.get()
+      if en { [Algorithm] } else { [算法] }
+    },
     inset: 0.43em,
     ..body,
   )
 }
 
-#let equation-note(english-writing: false, body) = {
+#let equation-note(body) = context {
+  let en = english-writing-state.get()
   block(width: 100%)[
     #set par(first-line-indent: 0pt, justify: false)
     #set text(zh(5))
-    #if english-writing {
+    #if en {
       [where ]
     } else {
       [式中，]
@@ -37,6 +44,8 @@
   english-writing: false,
   body,
 ) = {
+  english-writing-state.update(english-writing)
+
   // 算法样式
   show figure.where(kind: "algorithm"): set text(zh(5))
   show: style-algorithm.with(
@@ -94,8 +103,8 @@
   show: capfig-style.with(
     supplement: if english-writing { "Figure" } else { "图" },
     show-subcaption: true,
-    label-style: "（a）",
-    subcaption-number-title-spacing: 0pt,
+    label-style: if english-writing { "(a)" } else { "（a）" },
+    subcaption-number-title-spacing: if english-writing { 2pt } else { 0pt },
     caption-above: 0pt,
     figure-below: if graduate { auto } else { 20pt },
     figure-above: if graduate { auto } else { 20pt },
