@@ -120,14 +120,15 @@
   if title != "" {
     body += [#title#punct.period ]
   }
+  let slash = if punct.period == "．" { "／" } else { "/" }
   if publish-date != "" {
     body += [#publish-date]
     if cited-date != "" {
-      body += [/#cited-date]
+      body += [#slash#cited-date]
     }
     body += [#punct.period ]
   } else if cited-date != "" {
-    body += [/#cited-date#punct.period ]
+    body += [#slash#cited-date#punct.period ]
   }
   if url != "" {
     body += [#url#punct.period #entry.ref-label]
