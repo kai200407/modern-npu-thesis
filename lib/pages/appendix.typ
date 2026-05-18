@@ -1,8 +1,8 @@
 #import "../layouts/floats.typ": with-numbering-format
 #import "../utils.typ": page-title
 
-// 附录布局
-#let appendix(
+// 附录页面
+#let appendix-page(
   graduate: false,
   english-writing: false,
   it,
@@ -31,5 +31,6 @@
 
   show: with-numbering-format.with("A-1")
 
+  heading(level: 1)[]
   it
 }

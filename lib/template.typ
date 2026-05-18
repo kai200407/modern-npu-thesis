@@ -5,7 +5,7 @@
 #import "layouts/doc.typ": doc
 #import "layouts/floats.typ": algorithm, equation-note
 #import "layouts/mainmatter.typ": frontmatter, mainmatter
-#import "pages/appendix.typ": appendix as appendix-layout
+#import "pages/appendix.typ": appendix-page
 #import "pages/bachelor-cover.typ": bachelor-cover
 #import "pages/graduate-cover.typ": master-cover
 #import "pages/abstract.typ": abstract-page
@@ -128,6 +128,13 @@
     english-writing: english-writing,
   )
 
+  if graduate and appendix != none {
+    appendix-page(
+      graduate: graduate,
+      english-writing: english-writing,
+    )[#appendix]
+  }
+
   if acknowledgement != none {
     backmatter-page(
       "acknowledgement",
@@ -139,27 +146,22 @@
   if graduate and academic-achievements != none {
     backmatter-page(
       "academic-achievements",
-      graduate: true,
       english-writing: english-writing,
     )[#academic-achievements]
   }
 
-  if not graduate and design-summary != none {
+  if not graduate {
     backmatter-page(
       "design-summary",
       english-writing: english-writing,
     )[#design-summary]
   }
 
-  if appendix != none {
-    show: appendix-layout.with(
+  if not graduate and appendix != none {
+    appendix-page(
       graduate: graduate,
       english-writing: english-writing,
-    )
-    [
-      #heading(level: 1)[]
-      #appendix
-    ]
+    )[#appendix]
   }
 
   if graduate {
