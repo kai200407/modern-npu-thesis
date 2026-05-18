@@ -47,7 +47,7 @@
 可以使用 `capfig()` 来创建图，支持图标题、标签等功能。如@test 所示。
 
 #capfig(
-  image("figures/example.jpg", width: 20%),
+  image("figures/QQ交流群.jpg", width: 20%),
   caption: [图片测试],
   label: <test>,
 )
@@ -58,8 +58,8 @@
 
 #capsubfig(
   (
-    (content: image("figures/example.jpg", width: 40%), subcaption: [第一个子图说明], label: <fig-sub1>),
-    (content: image("figures/example.jpg", width: 40%), subcaption: [第二个子图说明], label: <fig-sub2>),
+    (content: image("figures/QQ交流群.jpg", width: 40%), subcaption: [第一个子图说明], label: <fig-sub1>),
+    (content: image("figures/QQ交流群.jpg", width: 40%), subcaption: [第二个子图说明], label: <fig-sub2>),
   ),
   columns: 2,
   caption: [总图标题],
@@ -68,10 +68,10 @@
 
 #capsubfig(
   (
-    (content: image("figures/example.jpg", width: 40%), subcaption: [第一个子图说明], label: <fig-sub3>),
-    (content: image("figures/example.jpg", width: 40%), subcaption: [第二个子图说明], label: <fig-sub4>),
-    (content: image("figures/example.jpg", width: 40%), subcaption: [第三个子图说明], label: <fig-sub5>),
-    (content: image("figures/example.jpg", width: 40%), subcaption: [第四个子图说明], label: <fig-sub6>),
+    (content: image("figures/QQ交流群.jpg", width: 40%), subcaption: [第一个子图说明], label: <fig-sub3>),
+    (content: image("figures/QQ交流群.jpg", width: 40%), subcaption: [第二个子图说明], label: <fig-sub4>),
+    (content: image("figures/QQ交流群.jpg", width: 40%), subcaption: [第三个子图说明], label: <fig-sub5>),
+    (content: image("figures/QQ交流群.jpg", width: 40%), subcaption: [第四个子图说明], label: <fig-sub6>),
   ),
   columns: 2,
   caption: [总图标题],
@@ -104,8 +104,6 @@
   | ^              | 纵向    | 横向 | 纵向      | 横向 |
   | 模量，GPa      | 181     | 10.3 | 38.6      | 8.3  |
 ]
-
-=== 续表示例
 
 可以通过 `breakable` 参数来设置表格是否允许分页，默认为 `false`。可以通过 `size` 参数来设置表格内文字的字号，默认为五号字体。
 

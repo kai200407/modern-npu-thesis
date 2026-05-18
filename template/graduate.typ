@@ -76,7 +76,7 @@
 可以使用 `capfig()` 来创建图，支持图标题、标签等功能。如@test 所示。
 
 #capfig(
-  image("figures/example.jpg", width: 20%),
+  image("figures/QQ交流群.jpg", width: 25%),
   caption: [图片测试],
   label: <test>,
 )
@@ -87,8 +87,8 @@
 
 #capsubfig(
   (
-    (content: image("figures/example.jpg", width: 40%), subcaption: [第一个子图说明], label: <fig-sub1>),
-    (content: image("figures/example.jpg", width: 40%), subcaption: [第二个子图说明], label: <fig-sub2>),
+    (content: image("figures/QQ交流群.jpg", width: 45%), subcaption: [第一个子图说明], label: <fig-sub1>),
+    (content: image("figures/QQ交流群.jpg", width: 45%), subcaption: [第二个子图说明], label: <fig-sub2>),
   ),
   columns: 2,
   caption: [总图标题],
@@ -97,10 +97,10 @@
 
 #capsubfig(
   (
-    (content: image("figures/example.jpg", width: 30%), subcaption: [第一个子图说明], label: <fig-sub3>),
-    (content: image("figures/example.jpg", width: 30%), subcaption: [第二个子图说明], label: <fig-sub4>),
-    (content: image("figures/example.jpg", width: 30%), subcaption: [第三个子图说明], label: <fig-sub5>),
-    (content: image("figures/example.jpg", width: 30%), subcaption: [第四个子图说明], label: <fig-sub6>),
+    (content: image("figures/QQ交流群.jpg", width: 38%), subcaption: [第一个子图说明], label: <fig-sub3>),
+    (content: image("figures/QQ交流群.jpg", width: 38%), subcaption: [第二个子图说明], label: <fig-sub4>),
+    (content: image("figures/QQ交流群.jpg", width: 38%), subcaption: [第三个子图说明], label: <fig-sub5>),
+    (content: image("figures/QQ交流群.jpg", width: 38%), subcaption: [第四个子图说明], label: <fig-sub6>),
   ),
   columns: 2,
   caption: [总图标题],

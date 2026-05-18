@@ -11,8 +11,6 @@
 
 > 如果你想使用 LaTeX 模板，请移步 [nwputhesis](https://github.com/1195343015/nwputhesis)。
 
-> **最新消息**：2026-5-8 基本修复了参考文献格式，强烈建议更新。
-
 ## 优势与特性
 
 - **语法简洁**：上手难度与 Markdown 相当，无需记忆繁琐的命令。
@@ -39,6 +37,12 @@
 
 由于目前模板仍在建设初期，使用方法可能会有变化。如果替换后编译报错，可查阅 [CHANGELOG.md](CHANGELOG.md) 了解最新变动，或参照新版本中的 `graduate.typ` / `bachelor.typ` 进行相应修改。
 
+## 交流群
+
+QQ 交流群：
+
+<img src="template/figures/QQ交流群.jpg" width="200">
+
 ### 依赖包
 
 本模板依赖以下 Typst 包，具体用法有疑惑可直接查阅相关文档：
@@ -48,13 +52,7 @@
 - [`cap-able`](https://typst.app/universe/package/cap-able) `Github dev分支` — 图/表
 - [`pointless-size`](https://typst.app/universe/package/pointless-size) `0.1.2` — 中文字号
 
-参考文献方面，模板针对西北工业大学本科、研究生论文格式要求做了对应调整。用户通常只需要维护 [template/bib](template/bib) 目录下的 BibTeX 文件，模板会自动处理文献引用和参考文献列表。
-
-## 交流群
-
-QQ 交流群：
-
-<img src="lib/assets/QQ交流群.jpg" width="200">
+参考文献方面，模板针对西北工业大学本科、研究生论文格式要求做了特殊调整，因此。
 
 > 本模板基于 [modern-nju-thesis](https://github.com/nju-lug/modern-nju-thesis) 开发，设计过程中还参考了 [pkuthss-typst](https://github.com/pku-typst/pkuthss-typst) 的实现。
 
