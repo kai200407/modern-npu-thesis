@@ -1,4 +1,4 @@
-#import "../deps.typ": zh
+#import "../deps.typ": zh, numbly
 #import "../utils.typ": 字体
 #import "header-footer.typ": page-footer, page-header-footer
 #import "floats.typ": setup-floats
@@ -12,19 +12,12 @@
   let leading = if graduate { 11.8pt } else { 11pt }
   let heading-above = if graduate { (13pt, 7pt, 5pt) } else { (20pt, 0pt, 0pt) }
   let heading-below = if graduate { (14pt, 0pt, 0pt) } else { (24pt, 2pt, 0pt) }
-  let heading-numbering = (..nums) => {
-    let nums = nums.pos()
-    if nums.len() == 1 {
-      if english-writing {
-        [Chapter #nums.at(0)#h(0.7em)]
-      } else if graduate {
-        [第 #nums.at(0) 章#h(0.7em)]
-      } else {
-        numbering("第一章　", nums.at(0))
-      }
-    } else if nums.len() <= 3 {
-      numbering("1.1", ..nums)
-    }
+  let heading-numbering = if english-writing {
+    numbly("Chapter {1}  ", "{1}.{2}", "{1}.{2}.{3}")
+  } else if graduate {
+    numbly("第 {1} 章  ", "{1}.{2}", "{1}.{2}.{3}")
+  } else {
+    numbly("第{1:一}章\u{3000}", "{1}.{2}", "{1}.{2}.{3}")
   }
 
   // 图、表、公式、算法样式

@@ -19,6 +19,9 @@
 // cuti（中文伪粗体）
 #import "@preview/cuti:0.4.0": show-cn-fakebold
 
+// numbly（标题编号模板）
+#import "@preview/numbly:0.1.0": numbly
+
 // outrageous（目录条目排版）
 #import "@preview/outrageous:0.4.1"
 
