@@ -1,6 +1,5 @@
 #import "../utils.typ": (
   字体, blind-review, char-space, datetime-display, datetime-display-en, distribute, info-row, major-en-map, mask-value,
-  title-en-map,
 )
 #import "../deps.typ": zh
 
@@ -145,7 +144,6 @@
   // 英文标题页
   let english-title-page() = {
     let major-en = major-en-map.at(info.major)
-    let supervisor-title-en = title-en-map.at(info.supervisor.at(1, default: "教授"), default: "Professor")
     let degree-title = if degree == "doctor" { "Doctor of " } else { "Master of " }
 
     v(95pt)
@@ -162,7 +160,7 @@
       #linebreak()
       #text(anonymous-text("author-en", info.author-en))
       #linebreak()
-      #text(weight: "bold")[Under the Supervision of #supervisor-title-en]
+      #text(weight: "bold")[Under the Supervision of Professor]
       #linebreak()
       #text(anonymous-text("supervisor-en", { info.supervisor-en }))
       #v(100pt)

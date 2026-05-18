@@ -66,14 +66,6 @@
   table.cell(stroke: (bottom: stroke-width), align(bottom)[#value]),
 )
 
-// 中文学术职称到英文的映射
-#let title-en-map = (
-  "教授": "Professor",
-  "副教授": "Associate Professor",
-  "研究员": "Researcher",
-  "讲师": "Lecturer",
-)
-
 // 显示中文日期（无前导零），不传 day 则只输出年月
 #let datetime-display(date) = {
   str(date.year) + " 年 " + str(date.month) + " 月" + if date.at("day", default: none) != none {
