@@ -1,5 +1,5 @@
 #import "../utils.typ": (
-  字体, char-space, datetime-display, datetime-display-en, distribute, info-row, major-en-map, mask-value,
+  字体, blind-review, char-space, datetime-display, datetime-display-en, distribute, info-row, major-en-map, mask-value,
   title-en-map,
 )
 #import "../deps.typ": zh
@@ -28,6 +28,10 @@
   }
 
   let major-label = if track == "professional" { "专业领域" } else { "学科专业" }
+
+  if "reviewers" not in info {
+    info.reviewers = (blind-review, blind-review)
+  }
 
   // 外封
   let outer-cover() = {

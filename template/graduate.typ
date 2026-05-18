@@ -1,5 +1,5 @@
 #import "/template.typ": (
-  Assign, IfElseChain, Return, While, algorithm, blind-review, capfig, capsubfig, captab, equation-note, multicite, nwpu-thesis, zh,
+  Assign, IfElseChain, Return, While, algorithm, capfig, capsubfig, captab, equation-note, multicite, nwpu-thesis, zh,
 )
 
 #show: nwpu-thesis.with(
@@ -21,10 +21,11 @@
     supervisor: ("张三", "教授"),
     supervisor-en: "San Zhang",
     submit-date: (year: 2026, month: 3),
-    reviewers: (
-      (name: "xxx", title: "教授", unit: "西北工业大学"),
-      blind-review,
-    ),
+    // 默认为全盲审模式，如果需要指定评阅人名单，可以在 info 中添加 reviewers 字段，如下所示：
+    // reviewers: (
+    //   (name: "xxx", title: "教授", unit: "西北工业大学"),
+    //   (name: "yyy", title: "教授", unit: "西北工业大学"),
+    // ),
     defence-committee: (
       date: (year: 2026, month: 3, day: 9),
       chairman: (name: "赵某某", title: "教授", unit: "西北工业大学"),

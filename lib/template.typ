@@ -12,7 +12,7 @@
 #import "pages/outline.typ": outline-page
 #import "pages/backmatter-page.typ": backmatter-page
 #import "pages/references.typ": bilingual-bibliography
-#import "utils.typ": blind-review, distribute, page-title
+#import "utils.typ": distribute, page-title
 
 #let default-bibliography(graduate) = {
   if not graduate {
