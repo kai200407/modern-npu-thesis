@@ -46,6 +46,8 @@
 ) = {
   english-writing-state.update(english-writing)
 
+  let line-height = 23pt
+
   // 算法样式
   show figure.where(kind: "algorithm"): set text(zh(5))
   show: style-algorithm.with(
@@ -90,8 +92,8 @@
     middle-rule: 1pt,
     caption-text: if graduate { (font: 字体.宋体混排) } else { (font: 字体.黑体) },
     caption-below: if graduate { auto } else { 10pt },
-    table-below: if graduate { 11pt } else { 20pt },
-    caption-above: if graduate { auto } else { 20pt },
+    table-below: if graduate { 11pt } else { line-height },
+    caption-above: if graduate { auto } else { line-height },
     breakable: false,
     continued-caption: true,
     width: if graduate { 100% } else { auto },
@@ -106,8 +108,8 @@
     label-style: if english-writing { "(a)" } else { "（a）" },
     subcaption-number-title-spacing: if english-writing { 2pt } else { 0pt },
     caption-above: 0pt,
-    figure-below: if graduate { auto } else { 20pt },
-    figure-above: if graduate { auto } else { 20pt },
+    figure-below: if graduate { auto } else { line-height },
+    figure-above: if graduate { auto } else { line-height },
     subref-style: "full",
   )
 
