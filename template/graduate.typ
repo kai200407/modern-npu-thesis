@@ -3,6 +3,7 @@
 )
 
 #show: nwpu-thesis.with(
+  ref-par-indent: "first-line", // 参考文献段落格式："none" | "first-line" | "hanging"
   graduate: true,
   degree: "master", // "master" | "doctor"，研究生学位级别
   track: "professional", // "academic" | "professional"，培养类型

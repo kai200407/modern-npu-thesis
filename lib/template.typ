@@ -37,6 +37,7 @@
   appendix: none,
   scan-declaration: none,
   design-summary: none,
+  ref-par-indent: "none",
   body,
 ) = {
   let bibliography = default-bibliography(graduate)
@@ -126,6 +127,7 @@
   bilingual-bibliography(
     graduate: graduate,
     english-writing: english-writing,
+    par-indent: ref-par-indent,
   )
 
   if graduate and appendix != none {
