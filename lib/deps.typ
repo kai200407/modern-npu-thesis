@@ -22,8 +22,8 @@
 // numbly（标题编号模板）
 #import "@preview/numbly:0.1.0": numbly
 
-// outrageous（目录条目排版，本地拷贝）
-#import "3rdparty/outrageous/outrageous.typ"
+// outrageous（目录条目排版）
+#import "@preview/outrageous:0.4.1"
 
 // pointless-size（中文字号）
 #import "@preview/pointless-size:0.1.2": zh

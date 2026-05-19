@@ -105,7 +105,7 @@
         title: if graduate { outline-title } else { [*#outline-title*] },
         indent: if not graduate { (0em, 1.8em, 1.3em) } else { (0em, 1.8em, 1.7em) },
         weight: if not graduate { ("bold", "regular", "regular") } else { (auto,) },
-        fill: if not graduate { ([#repeat[#text(zh(5))[…]]],) } else { (repeat([.]),) },
+        fill: if not graduate { ([#repeat(gap: -2pt)[#text(zh(6.5))[·]]],) } else { (repeat([.]),) },
         vspace: if not graduate { (1.25em, 1em) } else { (none,) },
         gap: if not graduate { (-0.5em, 0.5em) } else { (auto,) },
       )
