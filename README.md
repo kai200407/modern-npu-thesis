@@ -11,7 +11,7 @@
 
 > 如果你想使用 LaTeX 模板，请移步 [nwputhesis](https://github.com/1195343015/nwputhesis)。
 
-## 优势与特性
+### 优势与特性
 
 - **语法简洁**：上手难度与 Markdown 相当，无需记忆繁琐的命令。
 - **极速编译**：毫秒级编译，百页论文即时预览。
@@ -27,11 +27,7 @@
 
 仓库已提供工作区配置 [.vscode/settings.json](.vscode/settings.json)，会为 Tinymist 默认追加 `--font-path fonts`，因此在不同系统下都会优先使用仓库内自带的 Windows 字体文件。
 
-## QQ 交流群
-
-<img src="template/figures/QQ交流群.png" width="200">
-
-### 依赖包
+#### 依赖包
 
 本模板依赖以下 Typst 包，具体用法有疑惑可直接查阅相关文档：
 
@@ -40,9 +36,13 @@
 - [`cap-able`](https://typst.app/universe/package/cap-able) `0.1.1` — 图/表
 - [`pointless-size`](https://typst.app/universe/package/pointless-size) `0.1.2` — 中文字号
 
+### QQ 交流群
+
+<img src="template/figures/QQ交流群.png" width="200">
+
 > 本模板基于 [modern-nju-thesis](https://github.com/nju-lug/modern-nju-thesis) 开发，设计过程中还参考了 [pkuthss-typst](https://github.com/pku-typst/pkuthss-typst) 的实现。
 
-## License
+### License
 
 MIT License
 
