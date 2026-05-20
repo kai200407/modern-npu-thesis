@@ -13,6 +13,7 @@
   }
   show: show-cn-fakebold
   set text(zh(4.5), font: 字体.宋体混排, hyphenate: true, lang: "zh")
+  set smartquote(enabled: false)
   show regex("[a-zA-Z]+"): set text(lang: "en")
   set par(leading: 12pt, spacing: 12pt)
   set align(center)
