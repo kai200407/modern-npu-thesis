@@ -60,7 +60,7 @@
       let family-case-fn = if rules.family-uppercase {
         upper
       } else if en-titlecase {
-        x => { upper(x.first()) + lower(x.slice(1)) }
+        x => { x.split("-").map(part => upper(part.first()) + lower(part.slice(1))).join("-") }
       } else {
         x => x
       }
