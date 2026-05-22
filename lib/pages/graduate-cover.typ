@@ -1,5 +1,5 @@
 #import "../utils.typ": (
-  字体, blind-review, char-space, datetime-display, datetime-display-en, distribute, info-row, major-en-map, mask-value,
+  blind-review, char-space, datetime-display, datetime-display-en, distribute, info-row, major-en-map, mask-value, 字体,
 )
 #import "../deps.typ": zh
 
@@ -155,12 +155,22 @@
       #v(65pt)
     ]
 
+    // 中文学术职称到英文的映射
+    let title-en-map = (
+      "教授": "Professor",
+      "副教授": "Associate Professor",
+      "研究员": "Researcher",
+      "讲师": "Lecturer",
+    )
+    // 获取导师英文职称，默认为 Professor
+    let supervisor-title-en = title-en-map.at(info.supervisor.at(1, default: "教授"), default: "Professor")
+
     text(zh(3.5))[
       #text(weight: "bold")[By]
       #linebreak()
       #text(anonymous-text("author-en", info.author-en))
       #linebreak()
-      #text(weight: "bold")[Under the Supervision of Professor]
+      #text(weight: "bold")[Under the Supervision of #supervisor-title-en]
       #linebreak()
       #text(anonymous-text("supervisor-en", { info.supervisor-en }))
       #v(100pt)
