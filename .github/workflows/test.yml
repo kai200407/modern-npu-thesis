@@ -58,7 +58,9 @@ jobs:
         run: New-Item -ItemType Directory -Force -Path dist | Out-Null
 
       - name: Compile repository example
-        run: typst compile --root . --font-path fonts template/graduate.typ dist/thesis.pdf
+        run: |
+          typst compile --root . --font-path fonts template/graduate.typ dist/thesis.pdf
+          typst compile --root . --font-path fonts template/bachelor.typ dist/bachelor.pdf
 
       - name: Install package locally for template smoke test
         run: |
@@ -71,7 +73,9 @@ jobs:
           } | Copy-Item -Destination $packageDir -Recurse -Force
 
       - name: Compile package template entrypoint
-        run: typst compile --root . --package-cache-path .typst/packages --font-path fonts template/graduate.typ dist/thesis-template.pdf
+        run: |
+          typst compile --root . --package-cache-path .typst/packages --font-path fonts template/graduate.typ dist/thesis-template.pdf
+          typst compile --root . --package-cache-path .typst/packages --font-path fonts template/bachelor.typ dist/bachelor-template.pdf
 
       - name: Upload PDF artifact
         if: matrix.os == 'ubuntu-latest'
@@ -81,3 +85,5 @@ jobs:
           path: |
             dist/thesis.pdf
             dist/thesis-template.pdf
+            dist/bachelor.pdf
+            dist/bachelor-template.pdf
