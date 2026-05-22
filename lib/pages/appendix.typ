@@ -9,11 +9,11 @@
   it,
 ) = {
   let appendix-numbering = if english-writing {
-    numbly("Appendix {1:A}", "{1:A}.{2}", "{1:A}.{2}.{3}")
+    numbly("Appendix {1:A}", "{1:A}.{2}", "{1:A}.{2}.{3}", "(1)", "1)")
   } else if graduate {
-    numbly("附录{1:A}", "{1:A}.{2}", "{1:A}.{2}.{3}")
+    numbly("附录{1:A}", "{1:A}.{2}", "{1:A}.{2}.{3}", "（1）", "1）")
   } else {
-    numbly("附  录", "{1:A}.{2}", "{1:A}.{2}.{3}")
+    numbly("附  录", "{1:A}.{2}", "{1:A}.{2}.{3}",  "（1）", "1）")
   }
 
   set heading(numbering: appendix-numbering)

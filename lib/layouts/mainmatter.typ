@@ -13,11 +13,11 @@
   let heading-above = if graduate { (13pt, 7pt, 5pt) } else { (20pt, 0pt, 0pt) }
   let heading-below = if graduate { (14pt, 0pt, 0pt) } else { (24pt, 2pt, 0pt) }
   let heading-numbering = if english-writing {
-    numbly("Chapter {1}  ", "{1}.{2}", "{1}.{2}.{3}")
+    numbly("Chapter {1}  ", "{1}.{2}", "{1}.{2}.{3}", "(1)", "1)")
   } else if graduate {
-    numbly("第 {1} 章  ", "{1}.{2}", "{1}.{2}.{3}")
+    numbly("第 {1} 章  ", "{1}.{2}", "{1}.{2}.{3}", "（1）", "1）")
   } else {
-    numbly("第{1:一}章\u{3000}", "{1}.{2}", "{1}.{2}.{3}")
+    numbly("第{1:一}章\u{3000}", "{1}.{2}", "{1}.{2}.{3}", "（1）", "1）")
   }
 
   // 图、表、公式、算法样式
@@ -37,7 +37,9 @@
 
   // 处理标题
   set heading(numbering: heading-numbering)
-  show heading: set text(font: 字体.黑体)
+  show heading.where(level: 1): set text(font: 字体.黑体)
+  show heading.where(level: 2): set text(font: 字体.黑体)
+  show heading.where(level: 3): set text(font: 字体.黑体)
   show heading: it => {
     if it.level == 1 {
       counter(figure.where(kind: "algorithm")).update(0)
@@ -52,14 +54,17 @@
     )
     set par(first-line-indent: (amount: 0pt))
 
-    let above-extra = heading-above.at(it.level - 1)
-    let below-extra = heading-below.at(it.level - 1)
+    let above-extra = heading-above.at(calc.min(it.level, heading-above.len()) - 1)
+    let below-extra = heading-below.at(calc.min(it.level, heading-below.len()) - 1)
 
     // 一级标题统一换页并居中
     if it.level == 1 {
       pagebreak(weak: true, to: if graduate { "odd" })
       v(leading + above-extra)
       align(center, block(below: leading + below-extra, it))
+    } else if it.level >= 4 {
+      // 四级及以后：首行缩进 2em，无额外间距
+      block(above: leading, below: leading, pad(left: 2em, it))
     } else {
       block(above: leading + above-extra, below: leading + below-extra, it)
     }
