@@ -137,7 +137,7 @@
     )[#appendix]
   }
 
-  if not anonymous {
+  if not anonymous and acknowledgement != none {
     backmatter-page(
       "acknowledgement",
       graduate: graduate,
@@ -152,7 +152,7 @@
     )[#academic-achievements]
   }
 
-  if not graduate {
+  if not graduate and design-summary != none {
     backmatter-page(
       "design-summary",
       english-writing: english-writing,
