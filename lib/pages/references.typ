@@ -70,7 +70,12 @@
   }
   body += [#title]
   if graduate {
-    body += [[C]#punct.period ]
+    body += [[C]]
+    if proceedings-title != "" {
+      body += [#("/" + "/")#proceedings-title#punct.period ]
+    } else {
+      body += [#punct.period ]
+    }
   } else {
     body += [[A]#punct.period ]
     body += [#in-prefix]
