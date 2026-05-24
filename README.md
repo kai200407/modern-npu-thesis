@@ -5,6 +5,7 @@
 ***modern-npu-thesis***
 
 [![CI](https://github.com/1195343015/modern-npu-thesis/actions/workflows/test.yml/badge.svg)](https://github.com/1195343015/modern-npu-thesis/actions/workflows/test.yml)
+[![Nightly Built PDF](https://img.shields.io/badge/Preview-预览PDF_-C9CBFF?style=flat&logo=view&logoColor=D9E0EE&labelColor=302D41)](https://nightly.link/1195343015/modern-npu-thesis/workflows/test/main/thesis-pdf.zip)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 </div>
