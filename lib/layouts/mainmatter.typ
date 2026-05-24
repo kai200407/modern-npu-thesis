@@ -13,11 +13,11 @@
   let heading-above = if graduate { (13pt, 7pt, 5pt) } else { (20pt, 0pt, 0pt) }
   let heading-below = if graduate { (14pt, 0pt, 0pt) } else { (24pt, 2pt, 0pt) }
   let heading-numbering = if english-writing {
-    numbly("Chapter {1}  ", "{1}.{2}", "{1}.{2}.{3}", "(1)", "1)")
+    numbly("Chapter {1}  ", "{1}.{2}", "{1}.{2}.{3}", "({4})", "{5}")
   } else if graduate {
-    numbly("第 {1} 章  ", "{1}.{2}", "{1}.{2}.{3}", "（1）", "1）")
+    numbly("第 {1} 章  ", "{1}.{2}", "{1}.{2}.{3}", "（{4}）", "{5}）")
   } else {
-    numbly("第{1:一}章\u{3000}", "{1}.{2}", "{1}.{2}.{3}", "（1）", "1）")
+    numbly("第{1:一}章\u{3000}", "{1}.{2}", "{1}.{2}.{3}", "（{4}）", "{5}）")
   }
 
   // 图、表、公式、算法样式
